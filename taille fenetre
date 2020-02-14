@@ -5,5 +5,9 @@ fen.resizable(width=False, height=False)             #l'utilsateur ne peut pas m
 fen.wm_state(newstate="zoomed")                      #la fentre est en pleine ecran
 fen.mainloop()
 
+OU
 
-
+from tkinter import *
+fen=Tk()
+fen.attributes("-fullscreen", 1)
+fen.mainloop()
