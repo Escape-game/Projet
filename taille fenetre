@@ -1,0 +1,9 @@
+
+from tkinter import *
+fen=Tk()
+fen.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
+fen.wm_state(newstate="zoomed")                      #la fentre est en pleine ecran
+fen.mainloop()
+
+
+
