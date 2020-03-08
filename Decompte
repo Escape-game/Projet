@@ -1,0 +1,25 @@
+from tkinter import*
+
+def decompte(count=10):
+    lab.config(text=str(count), font=("Arial",30))
+    if count > 0 :
+        fen_decompte.after(1000,decompte, count-1)    #after est une fonction qui appelle une autre fonction après une durée en millisecondes
+    if count==0:
+        fen_decompte.geometry("1000x200")
+        lab.config(text="C'EST FINI !!!!",font=("Times New Roman",100), bg='black', fg='red')
+
+
+fen_decompte=Tk()
+
+fen_decompte.geometry("250x150")
+
+lab=Label(fen_decompte, text="")
+lab.pack()
+
+btn=Button(fen_decompte, text="commencer", command=decompte)
+btn.pack(side=LEFT,padx=5 ,pady=5)
+
+btn2=Button(fen_decompte, text="Abandonner la partie",command=fen_decompte.destroy)
+btn2.pack(side=RIGHT, padx=5 , pady=5)
+
+fen_decompte.mainloop()
