@@ -1,0 +1,17 @@
+from tkinter import*
+
+def reponse():
+    entree_reponse.configure(text="Quel est la réponse?"+entree_reponse.get())        #recuperer le champ entré
+
+
+
+fen_enigme=Tk()
+
+lab=Label(fen_enigme, text="Quelle est la réponse?")
+lab.pack()
+
+entree_reponse= Entry(fen_enigme)
+
+entree_reponse.place(x=735, y=350)
+
+fen_enigme.mainloop()
