@@ -4,7 +4,6 @@ def prénom(x):
     entree_nom.configure(text="Quel est ton nom?"+entree_nom.get())        #recuperer le champ entré
 
 def nouvelle():
-    fen_decompte= Toplevel(fen_princ)
     fen_decompte=Tk()
     fen_decompte.geometry("250x150")
     fen_decompte.title("L'heure tourne")
