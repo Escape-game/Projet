@@ -13,6 +13,8 @@ fen_decompte=Tk()
 
 fen_decompte.geometry("250x150")
 
+fen_decompte.title("L'heure tourne")
+
 lab=Label(fen_decompte, text="")
 lab.pack()
 
