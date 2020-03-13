@@ -4,6 +4,7 @@ def prénom(x):
     entree_nom.configure(text="Quel est ton nom?"+entree_nom.get())        #recuperer le champ entré
 
 def nouvelle():
+    fen2=Toplevel(fen_princ)
     fen_decompte=Tk()
     fen_decompte.geometry("250x150")
     fen_decompte.title("L'heure tourne")
@@ -16,8 +17,8 @@ def nouvelle():
         if count > 0 :
             fen_decompte.after(1000,decompte, count-1)    #after est une fonction qui appelle une autre fonction après une durée en millisecondes
         if count==0:
-            fen_decompte.geometry("1000x200")
-            lab.config(text="C'EST FINI !!!!",font=("Times New Roman",100), bg='black', fg='red')
+            fen_decompte.wm_state(newstate="zoomed")
+            lab.config(text="GAME OVER",font=("Times New Roman",100), bg='black', fg='red')
 
     btn=Button(fen_decompte, text="commencer", command=decompte)
     btn.pack(side=LEFT,padx=5 ,pady=5)
