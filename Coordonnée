@@ -1,1 +1,26 @@
-zones[o] 
+from tkinter import*
+
+
+
+def recherche_zone (evenement):
+    coordonée_x, coordonée_y = evenement.x, evenement.y
+    i=0
+    while i <len(zone):
+        if coordonée_x and coordonée_y in zone[i][1]:
+            zone_cliquée=zone[i][0]
+
+    i+=1
+
+
+
+fen=Tk()
+fen.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
+fen.wm_state(newstate="zoomed")                      #la fentre est en pleine ecran
+
+zone=[["a",(0,50,50)],["b",(5,100,100)]]
+
+fen.bind('<Button-1>', recherche_zone)
+
+fen.mainloop()
+
+
