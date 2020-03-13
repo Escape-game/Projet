@@ -5,7 +5,7 @@ def prénom(x):
 
 def nouvelle():
     fen2=Toplevel(fen_princ)
-    fen_decompte=Tk()
+    fen_decompte=Toplevel(fen_princ)
     fen_decompte.geometry("250x150")
     fen_decompte.title("L'heure tourne")
 
