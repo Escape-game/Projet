@@ -1,0 +1,26 @@
+n=10 #nombre d'allumettes
+
+while n>0:
+    j=0
+    while j<1 or j>3 or j>n:
+        j=int(input("Combien d'allumettes prenez-vous?"))
+    n=n-j
+    if n==0:
+        print("Vous avez perdu :(")
+    else:
+        print("Il reste",n,"allumettes!")
+
+        if n%4==3:
+            p=2
+        elif n%4==2:
+            p=1
+        elif n%4==0:
+            p=3
+        else:
+            p=1
+
+        print("J'en prends",p)   #ce que l'ordi prend
+        n=n-p
+        print("Il reste",n,"allumettes")
+        if n==0:
+            print("J'ai perdu! Bravo")
