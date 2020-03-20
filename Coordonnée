@@ -1,10 +1,23 @@
 from tkinter import*
 
-def nouvelle():
-    fen2=Toplevel(fen_princ)
-    fen_enigme1=Toplevel(fen_princ)
-    fen_enigme1.geometry("250x150")
-    fen_enigme1.title("Enigme 1")
+def nouvelle(zone_cliquée):
+    def jeu_1():
+        fen2=Toplevel(fen_princ)
+        fen_enigme1=Toplevel(fen_princ)
+        fen_enigme1.geometry("250x150")
+        fen_enigme1.title("Enigme 1")
+
+    def jeu_2():
+        fen2=Toplevel(fen_princ)
+        fen_enigme1=Toplevel(fen_princ)
+        fen_enigme1.geometry("250x150")
+        fen_enigme1.title("Enigme 2")
+
+    liste_jeux = [ jeu_1() , jeu_2() ]
+    zone_cliquée
+    if zone_cliquée<len(liste_jeux) :                                                      #pour que il n'y ait pas index out of range
+        command=liste_jeux[zone_cliquée]
+
 
 
 def recherche_zone (evenement):
@@ -14,8 +27,8 @@ def recherche_zone (evenement):
     while i <len(zone):
 
         if zone[i][1]<coordonée_x< zone[i][2] and zone[i][3]<coordonée_y<zone[i][4] :
-            #zone_cliquée=zone[i][0]
-            nouvelle()
+            zone_cliquée=zone[i][0]
+            nouvelle(zone_cliquée)
         i+=1
 
 
@@ -30,10 +43,7 @@ hauteur_fen_princ = fen_princ.winfo_screenheight()         #hauteur en pixel de 
 can=Canvas(fen_princ, width=1600, height=900, bg="light blue")
 can.pack()
 
-#can1=Canvas(fen_princ, width= 500, height=300, bg="pink")
-#can1.pack()
-
-zone=[["a", 0 , 500 , 0 , 300  ],["b", 500 , 1600 , 300 , 900 ]]
+zone=[[1 , 0 , 500 , 0 , 300  ],[ 2 , 500 , 1600 , 300 , 900 ]]
 
 fen_princ.bind('<Button-1>', recherche_zone)
 
