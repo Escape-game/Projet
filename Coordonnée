@@ -1,26 +1,38 @@
 from tkinter import*
 
+def nouvelle():
+    fen2=Toplevel(fen_princ)
+    fen_enigme1=Toplevel(fen_princ)
+    fen_enigme1.geometry("250x150")
+    fen_enigme1.title("Enigme 1")
 
 
 def recherche_zone (evenement):
+    global coordonée_x , coordonnée_y
     coordonée_x, coordonée_y = evenement.x, evenement.y
     i=0
     while i <len(zone):
         if coordonée_x and coordonée_y in zone[i][1]:
             zone_cliquée=zone[i][0]
+            nouvelle()
+        i+=1
 
-    i+=1
 
 
+fen_princ=Tk()
+fen_princ.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
+fen_princ.wm_state(newstate="zoomed")                  #la fentre est en pleine ecran
 
-fen=Tk()
-fen.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
-fen.wm_state(newstate="zoomed")                      #la fentre est en pleine ecran
+largeur_fen_princ = fen_princ.winfo_screenwidth()          #largeur en pixel de la fenêtre principale: 1600
+hauteur_fen_princ = fen_princ.winfo_screenheight()         #hauteur en pixel de la fenêtre principale : 900
 
-zone=[["a",(0,50,50)],["b",(5,100,100)]]
+can=Canvas(fen_princ, width=1600, height=900, bg='light blue' )
+can.pack()
 
-fen.bind('<Button-1>', recherche_zone)
+zone=[["a",(0,1000,1000)],["b",(5,100,100)]]
 
-fen.mainloop()
+fen_princ.bind('<Button-1>', recherche_zone)
+
+fen_princ.mainloop()
 
 
