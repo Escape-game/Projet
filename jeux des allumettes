@@ -1,26 +1,37 @@
-n=10 #nombre d'allumettes
+from tkinter import*
 
-while n>0:
-    j=0
-    while j<1 or j>3 or j>n:
-        j=int(input("Combien d'allumettes prenez-vous?"))
-    n=n-j
-    if n==0:
-        print("Vous avez perdu :(")
-    else:
-        print("Il reste",n,"allumettes!")
+n=[1,2,3,4,5,6,7,8,9,10] #nombre d'allumettes
+i=0 #nombre de chance
 
-        if n%4==3:
-            p=2
-        elif n%4==2:
-            p=1
-        elif n%4==0:
-            p=3
+while i<3:
+    while len(n)>0:
+        j=0
+        while j<1 or j>3 or j>len(n):
+            j=int(input("Combien d'allumettes prenez-vous, 1, 2 ou 3?"))
+        del n[:j]
+
+        if len(n)==0:
+            i+=1
+            print("Vous avez perdu :( , il vous reste",3-i,"chances")
+
+
         else:
-            p=1
+            print("Il reste",len(n),"allumettes!")
 
-        print("J'en prends",p)   #ce que l'ordi prend
-        n=n-p
-        print("Il reste",n,"allumettes")
-        if n==0:
-            print("J'ai perdu! Bravo")
+            if len(n)%4==3:
+                p=2
+            elif len(n)%4==2:
+                p=1
+            elif len(n)%4==0:
+                p=3
+            else:
+                p=1
+
+            print("J'en prends",p)   #ce que l'ordi prend
+            del n[0:p]
+            print("Il reste",len(n),"allumettes")
+            if len(n)==0:
+                i+=3
+                print("J'ai perdu! Bravo")
+
+
