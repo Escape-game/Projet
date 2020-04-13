@@ -1,9 +1,46 @@
 from tkinter import*
+from tkinter.messagebox import *
 
-n=[1,2,3,4,5,6,7,8,9,10] #nombre d'allumettes
-i=0 #nombre de chance
+def afficher_image(image_nom):
+    fen = Tk()
 
-while i<3:
+    fen.geometry("600x400")
+    can = Canvas(fen, width=600, height = 400, bg = 'black')
+    can.pack()
+    print(image_nom)
+    im=PhotoImage(file = image_nom)
+    print(im)
+    can.create_image(0,0,anchor=NW,image = im)
+    fen.mainloop()
+
+
+def afficher_allumettes(nball):
+
+    fichier="../Images/allumettes/" + str(nball) + " allumettes.gif"
+    afficher_image(fichier)
+
+def afficher_perdu():
+
+    fichier="../Images/perdu.gif"
+    afficher_image(fichier)
+
+def afficher_gagner():
+
+    fichier="../Images/bravo.gif"
+    afficher_image(fichier)
+
+def message(str):
+
+    #showinfo(str)
+    print(str)
+
+
+
+
+i=3 #nombre de chance
+
+while i>0:
+    n=[1,2,3,4,5,6,7,8,9,10] #nombre d'allumettes
     while len(n)>0:
         j=0
         while j<1 or j>3 or j>len(n):
@@ -11,13 +48,13 @@ while i<3:
         del n[:j]
 
         if len(n)==0:
-            i+=1
-            print("Vous avez perdu :( , il vous reste",3-i,"chances")
-
+            i-=1
+            message("Vous avez perdu :( , il vous reste " + str(i) + "chances")
+            afficher_perdu()
 
         else:
-            print("Il reste",len(n),"allumettes!")
-
+            message("Il reste" + str(len(n))  + "allumettes!")
+            afficher_allumettes(len(n))
             if len(n)%4==3:
                 p=2
             elif len(n)%4==2:
@@ -27,11 +64,16 @@ while i<3:
             else:
                 p=1
 
-            print("J'en prends",p)   #ce que l'ordi prend
-            del n[0:p]
-            print("Il reste",len(n),"allumettes")
+            message("J'en prends" + str(p))   #ce que l'ordi prend
+            del n[:p]
+            message("Il reste" + str(len(n)) + "allumettes")
+
             if len(n)==0:
-                i+=3
-                print("J'ai perdu! Bravo")
+                message("J'ai perdu! Bravo")
+                i=0
+                afficher_bravo()
+            else:
+                afficher_allumettes(len(n))
+
 
 
