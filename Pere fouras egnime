@@ -1,6 +1,12 @@
+i=5
 print("Bienvenue! Si vous voulez gagner un indice il vous faudra répondre à cette égnime, c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...")
-reponse= input(print('Qui est-il?'))
-if reponse=="rien":
-    print("Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien")
-else:
-    print("Non ce n'est pas ça")
+
+while i>0:
+    reponse= input(print('Qui est-il?'))
+    if reponse=="rien":
+        print("Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien")
+        i-=5
+    else:
+        print("Non ce n'est pas ça, il vous reste",i-1,"chance.")
+        i-=1
+
