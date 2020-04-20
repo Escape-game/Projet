@@ -1,0 +1,6 @@
+print("Bienvenue! Si vous voulez gagner un indice il vous faudra répondre à cette égnime, c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...")
+reponse= input(print('Qui est-il?'))
+if reponse=="rien":
+    print("Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien")
+else:
+    print("Non ce n'est pas ça")
