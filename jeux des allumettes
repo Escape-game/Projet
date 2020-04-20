@@ -70,7 +70,7 @@ while i>0:
 
             if len(n)==0:
                 message("J'ai perdu! Bravo")
-                message("Voici le 2ème chiffre du code: 4 ")
+                message("Voici le 2ème chiffre du code: 0100 ")
                 i=0
                 afficher_bravo()
             else:
