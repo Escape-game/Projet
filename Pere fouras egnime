@@ -18,7 +18,7 @@ while i>0:
     reponse= input(print('Qui est-il?'))
     if reponse=="rien":
         print("Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien")
-        print("Voici le 3ème chiffre du code: 0 ")
+        print("Voici le 3ème chiffre du code: 0000 ")
         i-=5
     else:
         print("Non ce n'est pas ça, il vous reste",i-1,"chance.", "Voici un indice", indice(i))
