@@ -1,6 +1,6 @@
 def indice(x):
     if x==5:
-        print("Si on mange que ça, on meurt")
+        print("Si on ne mange que ça, on meurt")
     elif x==4:
         print("La première lettre du mot est R")
     elif x==3:
