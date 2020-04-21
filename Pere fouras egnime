@@ -1,13 +1,13 @@
 def indice(x):
-    if x==5:
+    if x==4:
         print("Si on ne mange que ça, on meurt")
-    elif x==4:
-        print("La première lettre du mot est R")
     elif x==3:
-        print("Le mot est en 4 lettres")
+        print("La première lettre du mot est R")
     elif x==2:
-        print("C'est un antonyme de 'tout'")
+        print("Le mot est en 4 lettres")
     elif x==1:
+        print("C'est un antonyme de 'tout'")
+    else:
         print("le mot rime avec 'chien'")
 
 
@@ -21,6 +21,6 @@ while i>0:
         print("Voici le 3ème chiffre du code: 0000 ")
         i-=5
     else:
-        print("Non ce n'est pas ça, il vous reste",i-1,"chance.", "Voici un indice", indice(i))
+        print("Non ce n'est pas ça, il vous reste",i-1,"chance.", "Voici un indice", indice(i-1))
         i-=1
 
