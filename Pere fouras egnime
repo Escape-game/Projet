@@ -7,8 +7,7 @@ def indice(x):
         print("Le mot est en 4 lettres")
     elif x==1:
         print("C'est un antonyme de 'tout'")
-    else:
-        print("le mot rime avec 'chien'")
+  
 
 
 i=5
