@@ -2,25 +2,21 @@ from tkinter import*
 
 def indice(x):
 
-    if x==5:
+    if x==4:
 
         aide="Si on mange que ça, on meurt"
 
-    elif x==4:
+    elif x==3:
 
         aide="La première lettre du mot est R"
 
-    elif x==3:
+    elif x==2:
 
         aide="Le mot est en 4 lettres"
 
-    elif x==2:
+    elif x==1:
 
         aide="C'est un antonyme de 'tout'"
-
-    else:
-
-        aide="le mot rime avec 'chien'"
 
     return aide
 
@@ -46,7 +42,7 @@ def verification():
 
         else:
 
-            lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste" + str(i-1) + "chance. Voici un indice" + indice(i))
+            lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste" + str(i-1) + "chances. Voici un indice" + indice(i-1))
             lab5.pack()
 
             i-=1
