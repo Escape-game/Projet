@@ -42,7 +42,7 @@ def verification():
 
         else:
 
-            lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste" + str(i-1) + "chances. Voici un indice" + indice(i-1))
+            lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. Voici un indice: " + indice(i-1))
             lab5.pack()
 
             i-=1
