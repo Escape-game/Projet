@@ -36,10 +36,18 @@ def jouer(ton_coup):
     score2.configure(text=str(mon_score))
 
    if mon_score == 5:
+        bouton1.destroy()
+        bouton2.destroy()
+        bouton3.destroy()
+        bouton4.destroy()
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !")
         texte3.grid(row=3, columnspan =3, pady =5)
     elif ton_score == 5:
+        bouton1.destroy()
+        bouton2.destroy()
+        bouton3.destroy()
+        bouton4.destroy()
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000")
         texte3.grid(row=3, columnspan =3, pady =5)
