@@ -96,7 +96,7 @@ pierre = PhotoImage(file ='../Images/chi fou mi/pierre.gif')
 papier = PhotoImage(file ='../Images/chi fou mi/papier.gif')
 ciseaux = PhotoImage(file ='../Images/chi fou mi/ciseaux.gif')
 bravo=PhotoImage(file ='../Images/bravo.gif')
-perdu=PhotoImage(file ='../Images/perdu.gif')
+perdu=PhotoImage(file ='../Images/perdu2.gif')
 
 # Label
 texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
