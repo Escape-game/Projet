@@ -99,7 +99,7 @@ bravo=PhotoImage(file ='../Images/bravo.gif')
 perdu=PhotoImage(file ='../Images/perdu2.gif')
 
 # Label
-texte=Label(fenetre, text="Pierre, feuille, ciseaux :", font=("Helvetica", 40))
+texte=Label(fenetre, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
 texte.place(x=500,y=50)
 
 texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
@@ -110,6 +110,9 @@ texte2.place(x=925,y=150)
 
 texte3 = Label(fenetre, text="Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
 texte3.place(x=500,y=450)
+
+texte4=Label(fenetre, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12))
+texte4.place(x=1100, y=100)
 
 score1 = Label(fenetre, text="0", font=("Helvetica", 20))
 score1.place(x=550,y=200)
