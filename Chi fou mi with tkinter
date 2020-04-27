@@ -35,12 +35,14 @@ def jouer(ton_coup):
     score1.configure(text=str(ton_score))
     score2.configure(text=str(mon_score))
 
-    if mon_score == 5 or ton_score == 5:
+   if mon_score == 5:
         texte3.destroy()
-        texte3 = Label(fenetre, text="Le jeu est fini !")
+        texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !")
         texte3.grid(row=3, columnspan =3, pady =5)
-        if ton_score == 5:
-            print("indice")
+    elif ton_score == 5:
+        texte3.destroy()
+        texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000")
+        texte3.grid(row=3, columnspan =3, pady =5)
 
 
 
