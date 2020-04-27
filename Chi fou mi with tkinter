@@ -43,6 +43,8 @@ def jouer(ton_coup):
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !",font=("Helvetica", 18))
         texte3.place(x=600,y=450)
+        lab4 = Label(fenetre, image=perdu)
+        lab4.place(x=600,y=500)
     elif ton_score == 5:
         bouton1.destroy()
         bouton2.destroy()
@@ -51,6 +53,8 @@ def jouer(ton_coup):
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
         texte3.place(x=500,y=450)
+        lab4 = Label(fenetre, image=bravo)
+        lab4.place(x=600,y=500)
 
 
 
@@ -91,6 +95,8 @@ versus = PhotoImage(file ='../Images/chi fou mi/versus.gif')
 pierre = PhotoImage(file ='../Images/chi fou mi/pierre.gif')
 papier = PhotoImage(file ='../Images/chi fou mi/papier.gif')
 ciseaux = PhotoImage(file ='../Images/chi fou mi/ciseaux.gif')
+bravo=PhotoImage(file ='../Images/bravo.gif')
+perdu=PhotoImage(file ='../Images/perdu.gif')
 
 # Label
 texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
