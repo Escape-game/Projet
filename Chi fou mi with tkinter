@@ -35,22 +35,23 @@ def jouer(ton_coup):
     score1.configure(text=str(ton_score))
     score2.configure(text=str(mon_score))
 
-   if mon_score == 5:
+    if mon_score == 5:
         bouton1.destroy()
         bouton2.destroy()
         bouton3.destroy()
         bouton4.destroy()
         texte3.destroy()
-        texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !")
-        texte3.grid(row=3, columnspan =3, pady =5)
+        texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !",font=("Helvetica", 18))
+        texte3.place(x=600,y=450)
     elif ton_score == 5:
         bouton1.destroy()
         bouton2.destroy()
         bouton3.destroy()
         bouton4.destroy()
         texte3.destroy()
-        texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000")
-        texte3.grid(row=3, columnspan =3, pady =5)
+        texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
+        texte3.place(x=500,y=450)
+
 
 
 
@@ -92,48 +93,48 @@ papier = PhotoImage(file ='../Images/chi fou mi/papier.gif')
 ciseaux = PhotoImage(file ='../Images/chi fou mi/ciseaux.gif')
 
 # Label
-texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 16))
-texte1.grid(row=0,column=0)
+texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
+texte1.place(x=525,y=150)
 
-texte2 = Label(fenetre, text="Ordi :", font=("Helvetica", 16))
-texte2.grid(row=0,column=2)
+texte2 = Label(fenetre, text="Ordi :", font=("Helvetica", 20))
+texte2.place(x=925,y=150)
 
-texte3 = Label(fenetre, text="Pour jouer, cliquez sur une des icones ci-dessous.")
-texte3.grid(row=3, columnspan =3, pady =5)
+texte3 = Label(fenetre, text="Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
+texte3.place(x=500,y=450)
 
-score1 = Label(fenetre, text="0", font=("Helvetica", 16))
-score1.grid(row=1, column=0)
+score1 = Label(fenetre, text="0", font=("Helvetica", 20))
+score1.place(x=550,y=200)
 
-score2 = Label(fenetre, text="0", font=("Helvetica", 16))
-score2.grid(row=1, column=2)
+score2 = Label(fenetre, text="0", font=("Helvetica", 20))
+score2.place(x=950,y=200)
 
 lab1 = Label(fenetre, image=rien)
-lab1.grid(row =2, column =0)
+lab1.place(x=500,y=300)
 
 lab2 = Label(fenetre, image=versus)
-lab2.grid(row =2, column =1)
+lab2.place(x=700,y=300)
 
 lab3 = Label(fenetre, image=rien)
-lab3.grid(row =2, column =2)
+lab3.place(x=900,y=300)
 
 # boutons
 bouton1 = Button(fenetre,command=jouer_pierre)
 bouton1.configure(image=pierre)
-bouton1.grid(row =4, column =0)
+bouton1.place(x=500,y=500)
 
 bouton2 = Button(fenetre,command=jouer_papier)
 bouton2.configure(image=papier)
-bouton2.grid(row =4, column =1,)
+bouton2.place(x=700,y=500)
 
 bouton3 = Button(fenetre,command=jouer_ciseaux)
 bouton3.configure(image=ciseaux)
-bouton3.grid(row =4, column =2)
+bouton3.place(x=900,y=500)
 
 bouton4 = Button(fenetre,text='Recommencer',command=reinit)
-bouton4.grid(row =5, column =0, pady =10, sticky=E)
+bouton4.place(x=400,y=700)
 
 bouton5 = Button(fenetre,text='Quitter',command=fenetre.destroy)
-bouton5.grid(row =5, column =2, pady =10, sticky=W)
+bouton5.place(x=1000,y=700)
 
 # demarrage :
 fenetre.mainloop()
