@@ -99,6 +99,9 @@ bravo=PhotoImage(file ='../Images/bravo.gif')
 perdu=PhotoImage(file ='../Images/perdu2.gif')
 
 # Label
+texte=Label(fenetre, text="Pierre, feuille, ciseaux :", font=("Helvetica", 40))
+texte.place(x=500,y=50)
+
 texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
 texte1.place(x=525,y=150)
 
