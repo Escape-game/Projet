@@ -10,11 +10,8 @@ quigagne = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]]
 
 
 def augmenter_scores(mon_coup,ton_coup):
-    print("joueur=", ton_coup-1)
-    print("ordi=", mon_coup-1)
     resultat = quigagne[ton_coup-1][mon_coup-1]
-    print(resultat)
-
+    
     global mon_score, ton_score
 
     if resultat == 1:
