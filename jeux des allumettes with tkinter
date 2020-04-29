@@ -1,0 +1,115 @@
+from tkinter import *
+
+def nombre_de_chances():
+    i=3 #nombre de chance
+    while i>0:
+        if nombre_allumettes==0:
+            i-=1
+            texte2=Label(fenetre, text="Vous avez perdu :( , il vous reste " + i + "chances")
+            texte2.place(x=500, y=500)
+
+        else:
+            texte2=Label(fenetre, text="Il reste" + nombre_allumettes  + "allumettes!")
+            texte2.place(x=500, y=500)
+            lab.destroy()
+            lab.configure(image=afficher_allumettes(nombre_allumettes))
+            if nombre_allumettes%4==3:
+                p=2
+            elif nombre_allumettes%4==2:
+                p=1
+            elif nombre_allumettes%4==0:
+                p=3
+            else:
+                p=1
+
+            texte3=Label(fenetre,text="J'en prends" + str(p))   #ce que l'ordi prend
+            texte3.place(x=1100, y=100)
+            nombre_allumettes-=p
+            texte2.destroy()
+            texte2=Label(fenetre, text="Il reste" + nombre_allumettes  + "allumettes!")
+            texte2.place(x=1100, y=100)
+
+
+            if nombre_allumettes==0:
+                texte4=Label(text="J'ai perdu! Bravo")
+                texte4.place(x=1100, y=200)
+                i=0
+
+            else:
+                lab.destroy()
+                lab.configure(image=afficher_allumettes(nombre_allumettes))
+
+def afficher_allumettes(nball):
+
+    fichier="../Images/allumettes/" + str(nball) + " allumettes.gif"
+    afficher_image(fichier)
+
+def prendre_3_allumettes():
+    nombre_allumettes-=3
+    lab.destroy()
+    lab.configure(image= afficher_allumettes(nombre_allumettes))
+
+
+def prendre_2_allumettes():
+    nombre_allumettes-=2
+    lab.destroy()
+    lab.configure(image=afficher_allumettes(nombre_allumettes))
+
+def prendre_1_allumette():
+    nombre_allumettes-=1
+    lab.destroy()
+    lab.configure(image=afficher_allumettes(nombre_allumettes))
+
+
+def reinit():
+    lab.destroy()
+    lab.configure(image=allumettes)
+
+#variable
+nombre_allumettes=10
+
+# fenetre graphique
+fenetre = Tk()
+fenetre.title("Jeux des allumettes")
+fenetre.wm_state(newstate="zoomed")
+
+#images
+allumettes = PhotoImage(file ='../Images/allumettes/10 allumettes.gif')  #im=PhotoImage(file = image_nom)
+bravo=PhotoImage(file ='../Images/bravo.gif')
+perdu=PhotoImage(file ='../Images/perdu2.gif')
+
+# Label
+texte=Label(fenetre, text="Jeux des allumettes :", font=("Helvetica", 40))
+texte.place(x=500,y=50)
+
+texte1 = Label(fenetre, text="Cliquez sur le nombre d'allumettes que vous prenez:",font=("Helvetica", 18))
+texte1.place(x=450,y=150)
+
+texte5=Label(fenetre, text="Les règles du jeu:\n -Il y a 10 allumettes \n -Chacun leur tour le joueur et l'ordi choissisent de prendre 1, 2 ou 3 allumettes\n -Celui qui prend la dernière allumette perd .",font=("Helvetica", 10))
+texte5.place(x=1050, y=75)
+
+lab = Label(fenetre, image=allumettes)
+lab.place(x=300,y=300)
+
+
+# boutons
+bouton1 = Button(fenetre,command=prendre_1_allumette)
+bouton1.configure(text="1",font=(50))
+bouton1.place(x=500,y=200)
+
+bouton2 = Button(fenetre,command=prendre_2_allumettes)
+bouton2.configure(text="2",font=(50))
+bouton2.place(x=700,y=200)
+
+bouton3 = Button(fenetre,command=prendre_3_allumettes)
+bouton3.configure(text="3",font=(50))
+bouton3.place(x=900,y=200)
+
+bouton4 = Button(fenetre,text='Recommencer',command=reinit)
+bouton4.place(x=400,y=700)
+
+bouton5 = Button(fenetre,text='Quitter',command=fenetre.destroy)
+bouton5.place(x=1000,y=700)
+
+# demarrage :
+fenetre.mainloop()
