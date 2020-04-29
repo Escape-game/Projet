@@ -12,14 +12,14 @@ quigagne = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]]
 def augmenter_scores(mon_coup,ton_coup):
     print("joueur=", ton_coup-1)
     print("ordi=", mon_coup-1)
-    res = quigagne[ton_coup-1][mon_coup-1]
-    print(res)
+    resultat = quigagne[ton_coup-1][mon_coup-1]
+    print(resultat)
 
     global mon_score, ton_score
 
-    if res == 1:
+    if resultat == 1:
         ton_score += 1
-    elif res == -1:
+    elif resultat == -1:
         mon_score += 1
 
 def jouer(ton_coup):
@@ -35,7 +35,7 @@ def jouer(ton_coup):
     score1.configure(text=str(ton_score))
     score2.configure(text=str(mon_score))
 
-    if mon_score == 5:
+    if mon_score == 5:    #si ordi gagne
         bouton1.destroy()
         bouton2.destroy()
         bouton3.destroy()
@@ -45,7 +45,7 @@ def jouer(ton_coup):
         texte3.place(x=600,y=450)
         lab4 = Label(fenetre, image=perdu)
         lab4.place(x=600,y=500)
-    elif ton_score == 5:
+    elif ton_score == 5:   #si joueur gagne
         bouton1.destroy()
         bouton2.destroy()
         bouton3.destroy()
