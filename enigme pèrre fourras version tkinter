@@ -1,71 +1,56 @@
 from tkinter import*
 
 def indice(x):
-
     if x==4:
-
-        aide="Si on mange que ça, on meurt"
-
+        message="Voici un indice: Si on mange que ça, on meurt"
     elif x==3:
-
-        aide="La première lettre du mot est R"
-
+        message="Voici un indice: La première lettre du mot est R"
     elif x==2:
-
-        aide="Le mot est en 4 lettres"
-
+        message="Voici un indice: Le mot est en 4 lettres"
     elif x==1:
+        message="Voici un indice: C'est un antonyme de 'tout'"
+    elif x==0:
+        message="\n Vous avez perdu! \n La bonne réponse était 'rien'. \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien."
 
-        aide="C'est un antonyme de 'tout'"
+    return message
 
-    return aide
-
-def réponse():
-    entree_reponse.configure(text="votre réponse est "+entree.get())        #recuperer le champ entré
 
 def verification():
-    i=5
+    if entree.get()=="rien":
 
-    while i>=0:
+        lab3=Label(fen_enigme, text="Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
+        lab3.pack()
+        lab4=Label(fen_enigme, text="Voici le 3ème chiffre du code: 0000 ")
+        lab4.pack()
 
-        if entree.get()=="rien":
 
-            lab3=Label(fen_enigme, text="Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien")
-
-            lab3.pack()
-
-            lab4=Label(fen_enigme, text="Voici le 3ème chiffre du code: 0000 ")
-
-            lab4.pack()
-
-            i-=5
-
-        else:
-
-            lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. Voici un indice: " + indice(i-1))
-            lab5.pack()
-
-            i-=1
-
+    else:
+        global i          #pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
+        lab5=Label(fen_enigme, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. " + indice(i-1), font=("arial", 15))
+        lab5.pack()
+        i=i-1
 
 fen_enigme=Tk()
 
+fen_enigme.wm_state(newstate="zoomed")
 
-lab1=Label(fen_enigme, text="Bienvenue! Si vous voulez gagner un indice il vous faudra répondre à cette égnime, c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...")
-lab1.pack()
+texte1=Label(fen_enigme, text="Bienvenue ! \n vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
 
-lab2=Label(fen_enigme, text="Quelle est la réponse?")
-lab2.pack()
+texte1.pack(pady=100)
 
-entree= Entry(fen_enigme)
-entree.pack()
+texte2=Label(fen_enigme, text="Quelle est la réponse?", font=("Arial",25))
 
-bouton = Button(fen_enigme, text="validez votre réponse", command = verification)
-bouton.pack()
+texte2.pack(pady=10)
 
+entree= Entry(fen_enigme, font=20)
 
+entree.pack(pady=10)
 
+i=5
 
+bouton = Button(fen_enigme, text="validez votre réponse", font= ("arial", 20), command = verification)
+
+bouton.pack(pady=10)
 
 
 fen_enigme.mainloop()
