@@ -149,7 +149,8 @@ def nouvelle(zone_cliquée):
         #Bouton
         bouton = Button(fen_enigme1, text="validez votre réponse", font= ("arial", 20), command = verification)
         bouton.pack(pady=10)
-
+        bouton_quitter=Button(fen_enigme1, text="Quitter", font= ("arial", 20), command = fen_enigme1.destroy)
+        bouton_quitter.pack(pady=10)
         #démarrage
         fen_enigme1.mainloop()
 
@@ -311,7 +312,7 @@ def nouvelle(zone_cliquée):
         bouton4 = Button(fen_enigme2,text='Recommencer',command=reinit)
         bouton4.place(x=400,y=700)
 
-        bouton5 = Button(fen_enigme2,text='Quitter',command=fenetre.destroy)
+        bouton5 = Button(fen_enigme2,text='Quitter',command=fen_enigme2.destroy)
         bouton5.place(x=1000,y=700)
 
         # demarrage :
