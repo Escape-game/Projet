@@ -30,12 +30,12 @@ def nombre_de_chances():
             if nombre_allumettes==0:
                 i-=1
                 texte2=Label(fenetre_enigme2, text="Vous avez perdu :( , il vous reste " + str(i) + "chances")
-                texte2.place(x=1/3*largeur_fenetre_enigme2, y=250)
+                texte2.place(x=1/3*largeur_fenetre_enigme2, y=5/18*hauteur_fenetre_enigme2)
                 lab.configure(image=perdu)
 
             else:
                 texte2=Label(fenetre_enigme2, text="Il reste " + str( nombre_allumettes)  + " allumettes!")
-                texte2.place(x=1/3*largeur_fenetre_enigme2, y=250)
+                texte2.place(x=1/3*largeur_fenetre_enigme2, y=5/18*hauteur_fenetre_enigme2)
 
                 if nombre_allumettes%4==3:
                     p=2
