@@ -11,7 +11,7 @@ quigagne = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]]
 
 def augmenter_scores(mon_coup,ton_coup):
     resultat = quigagne[ton_coup-1][mon_coup-1]
-    
+
     global mon_score, ton_score
 
     if resultat == 1:
@@ -39,9 +39,9 @@ def jouer(ton_coup):
         bouton4.destroy()
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini, tu as perdu !",font=("Helvetica", 18))
-        texte3.place(x=600,y=450)
+        texte3.place(x=2/5*largeur_fenetre,y=1/2*hauteur_fenetre)
         lab4 = Label(fenetre, image=perdu)
-        lab4.place(x=600,y=500)
+        lab4.place(x=2/5*largeur_fenetre,y=5/9*hauteur_fenetre)
     elif ton_score == 5:   #si joueur gagne
         bouton1.destroy()
         bouton2.destroy()
@@ -49,9 +49,9 @@ def jouer(ton_coup):
         bouton4.destroy()
         texte3.destroy()
         texte3 = Label(fenetre, text="Le jeu est fini! Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
-        texte3.place(x=500,y=450)
+        texte3.place(x=1/3*largeur_fenetre,y=1/2*hauteur_fenetre)
         lab4 = Label(fenetre, image=bravo)
-        lab4.place(x=600,y=500)
+        lab4.place(x=2/5*largeur_fenetre,y=5/9*hauteur_fenetre)
 
 
 
@@ -68,7 +68,7 @@ def jouer_ciseaux():
     jouer(3)
     lab1.configure(image=ciseaux)
 
-def reinit():
+def reinit():  #remise a zero
     global mon_score,ton_score,score1,score2,lab1,lab3
     ton_score = 0
     mon_score = 0
@@ -86,6 +86,11 @@ mon_score = 0
 fenetre = Tk()
 fenetre.title("Pierre, papier, ciseaux")
 fenetre.wm_state(newstate="zoomed")
+largeur_fenetre = fenetre.winfo_screenwidth()
+hauteur_fenetre = fenetre.winfo_screenheight()
+
+
+
 #images
 rien = PhotoImage(file ='../Images/chi fou mi/rien.gif')
 versus = PhotoImage(file ='../Images/chi fou mi/versus.gif')
@@ -97,53 +102,53 @@ perdu=PhotoImage(file ='../Images/perdu2.gif')
 
 # Label
 texte=Label(fenetre, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
-texte.place(x=500,y=50)
+texte.place(x=1/3*largeur_fenetre,y=1/20*hauteur_fenetre)
 
 texte1 = Label(fenetre, text="Moi :", font=("Helvetica", 20))
-texte1.place(x=525,y=150)
+texte1.place(x=7/20*largeur_fenetre,y=1/6*hauteur_fenetre)
 
 texte2 = Label(fenetre, text="Ordi :", font=("Helvetica", 20))
-texte2.place(x=925,y=150)
+texte2.place(x=3/5*largeur_fenetre,y=1/6*hauteur_fenetre)
 
 texte3 = Label(fenetre, text="Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
-texte3.place(x=500,y=450)
+texte3.place(x=1/3*largeur_fenetre,y=1/2*hauteur_fenetre)
 
-texte4=Label(fenetre, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12))
-texte4.place(x=1100, y=100)
+texte4=Label(fenetre, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre.",font=("Helvetica", 12))
+texte4.place(x=11/15*largeur_fenetre, y=1/9*hauteur_fenetre)
 
 score1 = Label(fenetre, text="0", font=("Helvetica", 20))
-score1.place(x=550,y=200)
+score1.place(x=11/30*largeur_fenetre,y=2/9*hauteur_fenetre)
 
 score2 = Label(fenetre, text="0", font=("Helvetica", 20))
-score2.place(x=950,y=200)
+score2.place(x=3/5*largeur_fenetre,y=2/9*hauteur_fenetre)
 
 lab1 = Label(fenetre, image=rien)
-lab1.place(x=500,y=300)
+lab1.place(x=1/3*largeur_fenetre,y=1/3*hauteur_fenetre)
 
 lab2 = Label(fenetre, image=versus)
-lab2.place(x=700,y=300)
+lab2.place(x=7/15*largeur_fenetre,y=1/3*hauteur_fenetre)
 
 lab3 = Label(fenetre, image=rien)
-lab3.place(x=900,y=300)
+lab3.place(x=3/5*largeur_fenetre,y=1/3*hauteur_fenetre)
 
 # boutons
 bouton1 = Button(fenetre,command=jouer_pierre)
 bouton1.configure(image=pierre)
-bouton1.place(x=500,y=500)
+bouton1.place(x=1/3*largeur_fenetre,y=5/9*hauteur_fenetre)
 
 bouton2 = Button(fenetre,command=jouer_papier)
 bouton2.configure(image=papier)
-bouton2.place(x=700,y=500)
+bouton2.place(x=7/15*largeur_fenetre,y=5/9*hauteur_fenetre)
 
 bouton3 = Button(fenetre,command=jouer_ciseaux)
 bouton3.configure(image=ciseaux)
-bouton3.place(x=900,y=500)
+bouton3.place(x=3/5*largeur_fenetre,y=5/9*hauteur_fenetre)
 
 bouton4 = Button(fenetre,text='Recommencer',command=reinit)
-bouton4.place(x=400,y=700)
+bouton4.place(x=4/15*largeur_fenetre,y=7/9*hauteur_fenetre)
 
 bouton5 = Button(fenetre,text='Quitter',command=fenetre.destroy)
-bouton5.place(x=1000,y=700)
+bouton5.place(x=2/3*largeur_fenetre,y=7/9*hauteur_fenetre)
 
 # demarrage :
 fenetre.mainloop()
