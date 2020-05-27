@@ -355,6 +355,7 @@ def nouvelle(zone_cliquée):
 
     def jeu_3():
         ''' jeu des allumettes'''
+        
         def afficher_allumettes(nball):
 
             fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
