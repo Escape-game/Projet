@@ -140,7 +140,7 @@ def nouvelle(zone_cliquée):
 
         def verification():
 
-            if entree.get()=="rien":
+            if entree.get()=="rien" or "Rien":
                 lab3=Label(fen_enigme1, text="Bravo " + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
                 lab3.pack()
                 lab4=Label(fen_enigme1, text="Voici le 3ème chiffre du code: 0000 ")
