@@ -27,6 +27,7 @@ def démarrage():
 
 
 def prénom():
+    '''pour appeller le joueur par son prénom pour plus de convivialité :) '''
 
     entree_nom.configure(text= "Quel est ton nom?"+ entree_nom.get())        #recuperer le champ entré
     retour_nom = entree_nom.get()
@@ -91,6 +92,8 @@ def début():
     btn2.pack(side=RIGHT, padx=5 , pady=5)
 
 def fin_jeu():
+    ''' ferme toutes les fenêtres'''
+
     for widget in fen_accueil.winfo_children():            #winf_children() donne la liste des "enfants" d'un widget, ceux qui ont été créés en passant ce widget comme premier argument
         if isinstance(widget,Toplevel):                    #trier ceux qui sont des instances de la classe Toplevel
             widget.destroy()
@@ -346,6 +349,8 @@ def nouvelle(zone_cliquée):
         fen_enigme2.mainloop()
 
     def jeu_3():
+        ''' jeu des allumettes'''
+
         fen_enigme3=Toplevel(fen_accueil)
         fen_enigme3.geometry("250x150")
         fen_enigme3.title("Jeu des allumettes")
@@ -362,4 +367,3 @@ def nouvelle(zone_cliquée):
 fen_accueil=Tk()
 démarrage()
 fen_accueil.mainloop()
-fen_accueil.destroy
