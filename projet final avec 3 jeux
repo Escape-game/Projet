@@ -371,7 +371,7 @@ def nouvelle(zone_cliquée):
 
     def jeu_3():
         ''' jeu des allumettes'''
-        global nombre_allumettes, lab, fenetre_enigme3
+        global nombre_allumettes, lab, fenetre_enigme3,i,al, perdu, bravo
         def afficher_allumettes(nball):
 
             fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
