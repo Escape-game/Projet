@@ -2,6 +2,7 @@ from random import randint
 from tkinter import *
 
 def démarrage():
+    '''fenêtre d'acceuil du joueur'''
 
     #fenêtre
     fen_accueil.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
@@ -15,27 +16,33 @@ def démarrage():
     etiquette2=Label(fen_accueil, text="Quel est ton nom?",font=("Arial",24), fg='black')
     etiquette2.place(x=675, y=300)
 
-    #Entry
+
+    global entree_nom
     entree_nom= Entry(fen_accueil)
     entree_nom.place(x=735, y=350)
-    entree_nom.bind("<Return>",prénom)
 
     #Bouton
-    bouton=Button(fen_accueil, text="Commencer le jeu", bg='white', fg='red', command=début)
+    bouton=Button(fen_accueil, text="Commencer le jeu", bg='white', fg='red', command=lambda:[début(), prénom()]) #lambda permet de combiner des fonctions pour faire une seule commande, car un bouton ne prend qu'une seule commande
     bouton.place(x=750, y= 400)
 
-def prénom(x):
 
-    entree_nom.configure(text="Quel est ton nom?"+entree_nom.get())        #recuperer le champ entré
+def prénom():
+
+    entree_nom.configure(text= "Quel est ton nom?"+ entree_nom.get())        #recuperer le champ entré
+    retour_nom = entree_nom.get()
+    return retour_nom
 
 def début():
+    '''Fenêtre principale du jeu: pièce de l'escape game.'''
 
     #fenêtre principale
+    global fen_princ
     fen_princ=Toplevel(fen_accueil)
     fen_princ.title("Page principale")
     fen_princ.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
     fen_princ.wm_state(newstate="zoomed")                      #la fentre est en pleine ecran
 
+    global largeur_fen_princ, hauteur_fen_princ
     largeur_fen_princ = fen_princ.winfo_screenwidth()
     hauteur_fen_princ = fen_princ.winfo_screenheight()
 
@@ -45,7 +52,7 @@ def début():
 
     #variables globales
     global zone
-    zone=[[0 , 0 , 500 , 0 , 300  ],[ 1 , 500 , 1600 , 300 , 900 ]]
+    zone=[[0 , 0 , largeur_fen_princ/2 , 0 , hauteur_fen_princ  ], [1, largeur_fen_princ/2 , largeur_fen_princ , 0 , hauteur_fen_princ/2], [ 2 , largeur_fen_princ/2 , largeur_fen_princ , hauteur_fen_princ/2 , hauteur_fen_princ ]]
 
     fen_princ.bind('<Button-1>', recherche_zone)
 
@@ -53,6 +60,7 @@ def début():
 
 
     def decompte(count=10):
+        '''Fenêtre décompte toujours à l'écran'''
 
         lab.config(text=str(count), font=("Arial",30))
 
@@ -64,9 +72,12 @@ def début():
             lab.config(text="GAME OVER",font=("Times New Roman",100), bg='black', fg='red')
 
     #fenêtre
+    global fen_decompte
     fen_decompte=Toplevel(fen_accueil)
     fen_decompte.geometry("250x150")
     fen_decompte.title("L'heure tourne")
+    fen_decompte.wm_attributes("-topmost", 1)     #pour mettre la fenêtre TOUJOURS au premier plan  ( fen_decompte.focus() met au premier plan mais la fenêtre ne conserve pas cette position.)
+
 
     #Label
     lab=Label(fen_decompte, text="")
@@ -76,10 +87,19 @@ def début():
     btn=Button(fen_decompte, text="commencer", command=decompte)
     btn.pack(side=LEFT,padx=5 ,pady=5)
 
-    btn2=Button(fen_decompte, text="Abandonner la partie",command=fen_decompte.destroy)
+    btn2=Button(fen_decompte, text="Abandonner la partie",command= fin_jeu)
     btn2.pack(side=RIGHT, padx=5 , pady=5)
 
+def fin_jeu():
+    for widget in fen_accueil.winfo_children():            #winf_children() donne la liste des "enfants" d'un widget, ceux qui ont été créés en passant ce widget comme premier argument
+        if isinstance(widget,Toplevel):                    #trier ceux qui sont des instances de la classe Toplevel
+            widget.destroy()
+    fen_accueil.destroy()
+
+
+
 def recherche_zone (evenement):
+    '''Détecte dans quelle zone se trouve le clic'''
 
     global coordonée_x , coordonnée_y
     coordonée_x, coordonée_y = evenement.x, evenement.y
@@ -87,7 +107,7 @@ def recherche_zone (evenement):
 
     while i <len(zone):
 
-        if zone[i][1]<coordonée_x< zone[i][2] and zone[i][3]<coordonée_y<zone[i][4] :
+        if zone[i][1]<coordonée_x< zone[i][2] and zone[i][3]<coordonée_y<zone[i][4] :            #zone=[[0 , 0 ,  , 0 , 300  ],[ 1 , 500 , 1600 , 300 , 900 ]]
 
             global zone_cliquée
             zone_cliquée=zone[i][0]
@@ -95,8 +115,10 @@ def recherche_zone (evenement):
         i+=1
 
 def nouvelle(zone_cliquée):
+    '''lance un nouveau jeu à chaque clic dans une zone'''
 
     def jeu_1():
+        '''Enigme "rien" '''
 
         def indice(x):
             if x==4:
@@ -108,13 +130,13 @@ def nouvelle(zone_cliquée):
             elif x==1:
                     message="Voici un indice: C'est un antonyme de 'tout'"
             elif x==0:
-                    message="\n Vous avez perdu! \n La bonne réponse était 'rien'. \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien."
+                    message="\n Vous avez perdu " + prénom() + "! \n La bonne réponse était 'rien'. \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien."
             return message
 
         def verification():
 
             if entree.get()=="rien":
-                lab3=Label(fen_enigme1, text="Bravo!! en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
+                lab3=Label(fen_enigme1, text="Bravo" + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
                 lab3.pack()
                 lab4=Label(fen_enigme1, text="Voici le 3ème chiffre du code: 0000 ")
                 lab4.pack()
@@ -126,17 +148,19 @@ def nouvelle(zone_cliquée):
                 i=i-1
 
         #fenêtre
+        global fen_enigme1
         fen_enigme1=Toplevel(fen_accueil)
         fen_enigme1.geometry("250x150")
         fen_enigme1.title("Enigme 1")
         fen_enigme1.wm_state(newstate="zoomed")
+
 
         #Variables globales
         global i
         i=5
 
         #Label
-        texte1=Label(fen_enigme1, text="Bienvenue ! \n vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
+        texte1=Label(fen_enigme1, text="Bienvenue " + prénom() + " ! \n vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
         texte1.pack(pady=100)
         texte2=Label(fen_enigme1, text="Quelle est la réponse?", font=("Arial",25))
         texte2.pack(pady=10)
@@ -151,10 +175,12 @@ def nouvelle(zone_cliquée):
         bouton.pack(pady=10)
         bouton_quitter=Button(fen_enigme1, text="Quitter", font= ("arial", 20), command = fen_enigme1.destroy)
         bouton_quitter.pack(pady=10)
+
         #démarrage
         fen_enigme1.mainloop()
 
     def jeu_2():
+        '''pierre papier ciseaux'''
 
         # ton_coup/joueur en ligne, mon_coup/ordi en colonne
         #          Papier    pierre     Ciseau
@@ -214,7 +240,7 @@ def nouvelle(zone_cliquée):
                 bouton4.destroy()
                 texte3.destroy()
 
-                texte3 = Label(fen_enigme2, text="Le jeu est fini! Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
+                texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
                 texte3.place(x=500,y=450)
                 lab4 = Label(fen_enigme2, image=bravo)
                 lab4.place(x=600,y=500)
@@ -247,6 +273,7 @@ def nouvelle(zone_cliquée):
             lab3.configure(image=rien)
 
         #fenêtre
+        global fen_enigme2
         fen_enigme2=Toplevel(fen_accueil)
         fen_enigme2.geometry("250x150")
         fen_enigme2.title("Pierre, papier, ciseaux")
@@ -275,7 +302,7 @@ def nouvelle(zone_cliquée):
         texte2 = Label(fen_enigme2, text="Ordi :", font=("Helvetica", 20))
         texte2.place(x=925,y=150)
 
-        texte3 = Label(fen_enigme2, text="Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
+        texte3 = Label(fen_enigme2, text="Bienvenue " + prénom() + "! \n Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
         texte3.place(x=500,y=450)
 
         texte4=Label(fen_enigme2, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12))
@@ -318,7 +345,14 @@ def nouvelle(zone_cliquée):
         # demarrage :
         fen_enigme2.mainloop()
 
-    liste_jeux = [ jeu_1 , jeu_2 ]
+    def jeu_3():
+        fen_enigme3=Toplevel(fen_accueil)
+        fen_enigme3.geometry("250x150")
+        fen_enigme3.title("Jeu des allumettes")
+        fen_enigme3.wm_state(newstate="zoomed")
+
+
+    liste_jeux = [ jeu_1 , jeu_2 ,  jeu_3 ]
     liste_jeux[zone_cliquée]()
 
 ##############################################################
@@ -328,3 +362,4 @@ def nouvelle(zone_cliquée):
 fen_accueil=Tk()
 démarrage()
 fen_accueil.mainloop()
+fen_accueil.destroy
