@@ -6,24 +6,26 @@ def démarrage():
 
     #fenêtre
     fen_accueil.resizable(width=False, height=False)             #l'utilsateur ne peut pas modifier la taille
-    fen_accueil.wm_state(newstate="zoomed")            #la fentre est en pleine ecran
+    fen_accueil.wm_state(newstate="zoomed")                      #la fenetre est en pleine ecran
     fen_accueil.title("Bienvenue")
+    largeur_fen_accueil=fen_accueil.winfo_screenwidth()
+    hauteur_fen_accueil=fen_accueil.winfo_screenheight()
 
     #Label
     etiquette=Label(fen_accueil, text="Escape Game", font=("Times",52), fg='black')
     etiquette.pack()
 
     etiquette2=Label(fen_accueil, text="Quel est ton nom?",font=("Arial",24), fg='black')
-    etiquette2.place(x=675, y=300)
+    etiquette2.place(x=9/20*largeur_fen_accueil, y=1/3*hauteur_fen_accueil)
 
 
     global entree_nom
     entree_nom= Entry(fen_accueil)
-    entree_nom.place(x=735, y=350)
+    entree_nom.place(x=49/100*largeur_fen_accueil, y=7/18*hauteur_fen_accueil)
 
     #Bouton
     bouton=Button(fen_accueil, text="Commencer le jeu", bg='white', fg='red', command=lambda:[début(), prénom()]) #lambda permet de combiner des fonctions pour faire une seule commande, car un bouton ne prend qu'une seule commande
-    bouton.place(x=750, y= 400)
+    bouton.place(x=1/2*largeur_fen_accueil, y=4/9*hauteur_fen_accueil)
 
 
 def prénom():
@@ -60,7 +62,7 @@ def début():
     ############## décompte ###############
 
 
-    def decompte(count=10):
+    def decompte(count=600):
         '''Fenêtre décompte toujours à l'écran'''
 
         lab.config(text=str(count), font=("Arial",30))
@@ -88,7 +90,7 @@ def début():
     btn=Button(fen_decompte, text="commencer", command=decompte)
     btn.pack(side=LEFT,padx=5 ,pady=5)
 
-    btn2=Button(fen_decompte, text="Abandonner la partie",command= fin_jeu)
+    btn2=Button(fen_decompte, text="Abandonner le jeu",command= fin_jeu)
     btn2.pack(side=RIGHT, padx=5 , pady=5)
 
 def fin_jeu():
@@ -139,7 +141,7 @@ def nouvelle(zone_cliquée):
         def verification():
 
             if entree.get()=="rien":
-                lab3=Label(fen_enigme1, text="Bravo" + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
+                lab3=Label(fen_enigme1, text="Bravo " + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
                 lab3.pack()
                 lab4=Label(fen_enigme1, text="Voici le 3ème chiffre du code: 0000 ")
                 lab4.pack()
@@ -153,7 +155,6 @@ def nouvelle(zone_cliquée):
         #fenêtre
         global fen_enigme1
         fen_enigme1=Toplevel(fen_accueil)
-        fen_enigme1.geometry("250x150")
         fen_enigme1.title("Enigme 1")
         fen_enigme1.wm_state(newstate="zoomed")
 
@@ -163,7 +164,7 @@ def nouvelle(zone_cliquée):
         i=5
 
         #Label
-        texte1=Label(fen_enigme1, text="Bienvenue " + prénom() + " ! \n vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
+        texte1=Label(fen_enigme1, text="Bienvenue " + prénom() + " ! \n Vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
         texte1.pack(pady=100)
         texte2=Label(fen_enigme1, text="Quelle est la réponse?", font=("Arial",25))
         texte2.pack(pady=10)
@@ -196,6 +197,7 @@ def nouvelle(zone_cliquée):
         def augmenter_scores(mon_coup,ton_coup):
 
             resultat = quigagne[ton_coup-1][mon_coup-1]
+
             global mon_score, ton_score
 
             if resultat == 1:
@@ -231,9 +233,9 @@ def nouvelle(zone_cliquée):
                 texte3.destroy()
 
                 texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as perdu !",font=("Helvetica", 18))
-                texte3.place(x=600,y=450)
+                texte3.place(x=2/5*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
                 lab4 = Label(fen_enigme2, image=perdu)
-                lab4.place(x=600,y=500)
+                lab4.place(x=2/5*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
 
             elif ton_score == 5:   #si joueur gagne
 
@@ -244,9 +246,9 @@ def nouvelle(zone_cliquée):
                 texte3.destroy()
 
                 texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
-                texte3.place(x=500,y=450)
+                texte3.place(x=1/3*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
                 lab4 = Label(fen_enigme2, image=bravo)
-                lab4.place(x=600,y=500)
+                lab4.place(x=2/5*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
 
         def jouer_pierre():
 
@@ -278,9 +280,11 @@ def nouvelle(zone_cliquée):
         #fenêtre
         global fen_enigme2
         fen_enigme2=Toplevel(fen_accueil)
-        fen_enigme2.geometry("250x150")
         fen_enigme2.title("Pierre, papier, ciseaux")
         fen_enigme2.wm_state(newstate="zoomed")
+        largeur_fen_enigme2 = fen_enigme2.winfo_screenwidth()
+        hauteur_fen_enigme2 = fen_enigme2.winfo_screenheight()
+
 
         # variables globales
         ton_score = 0
@@ -297,64 +301,205 @@ def nouvelle(zone_cliquée):
 
         # Label
         texte=Label(fen_enigme2, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
-        texte.place(x=500,y=50)
+        texte.place(x=1/3*largeur_fen_enigme2,y=1/20*hauteur_fen_enigme2)
 
         texte1 = Label(fen_enigme2, text="Moi :", font=("Helvetica", 20))
-        texte1.place(x=525,y=150)
+        texte1.place(x=7/20*largeur_fen_enigme2,y=1/6*hauteur_fen_enigme2)
 
         texte2 = Label(fen_enigme2, text="Ordi :", font=("Helvetica", 20))
-        texte2.place(x=925,y=150)
+        texte2.place(x=3/5*largeur_fen_enigme2,y=1/6*hauteur_fen_enigme2)
 
         texte3 = Label(fen_enigme2, text="Bienvenue " + prénom() + "! \n Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
-        texte3.place(x=500,y=450)
+        texte3.place(x=1/3*largeur_fen_enigme2,y=17/36*hauteur_fen_enigme2)
 
         texte4=Label(fen_enigme2, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12))
-        texte4.place(x=1100, y=100)
+        texte4.place(x=11/15*largeur_fen_enigme2, y=1/9*hauteur_fen_enigme2)
 
         score1 = Label(fen_enigme2, text="0", font=("Helvetica", 20))
-        score1.place(x=550,y=200)
+        score1.place(x=11/30*largeur_fen_enigme2,y=2/9*hauteur_fen_enigme2)
 
         score2 = Label(fen_enigme2, text="0", font=("Helvetica", 20))
-        score2.place(x=950,y=200)
+        score2.place(x=3/5*largeur_fen_enigme2,y=2/9*hauteur_fen_enigme2)
 
         lab1 = Label(fen_enigme2, image=rien)
-        lab1.place(x=500,y=300)
+        lab1.place(x=1/3*largeur_fen_enigme2,y=1/3*hauteur_fen_enigme2)
+
 
         lab2 = Label(fen_enigme2, image=versus)
-        lab2.place(x=700,y=300)
+        lab2.place(x=7/15*largeur_fen_enigme2,y=1/3*hauteur_fen_enigme2)
 
         lab3 = Label(fen_enigme2, image=rien)
-        lab3.place(x=900,y=300)
+        lab3.place(x=3/5*largeur_fen_enigme2,y=1/3*hauteur_fen_enigme2)
 
         # boutons
         bouton1 = Button(fen_enigme2,command=jouer_pierre)
         bouton1.configure(image=pierre)
-        bouton1.place(x=500,y=500)
+        bouton1.place(x=1/3*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
 
         bouton2 = Button(fen_enigme2,command=jouer_papier)
         bouton2.configure(image=papier)
-        bouton2.place(x=700,y=500)
+        bouton2.place(x=7/15*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
 
         bouton3 = Button(fen_enigme2,command=jouer_ciseaux)
         bouton3.configure(image=ciseaux)
-        bouton3.place(x=900,y=500)
+        bouton3.place(x=3/5*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
 
         bouton4 = Button(fen_enigme2,text='Recommencer',command=reinit)
-        bouton4.place(x=400,y=700)
+        bouton4.place(x=4/15*largeur_fen_enigme2,y=7/9*hauteur_fen_enigme2)
 
         bouton5 = Button(fen_enigme2,text='Quitter',command=fen_enigme2.destroy)
-        bouton5.place(x=1000,y=700)
+        bouton5.place(x=2/3*largeur_fen_enigme2,y=7/9*hauteur_fen_enigme2)
 
         # demarrage :
         fen_enigme2.mainloop()
 
     def jeu_3():
         ''' jeu des allumettes'''
+        def afficher_allumettes(nball):
 
-        fen_enigme3=Toplevel(fen_accueil)
-        fen_enigme3.geometry("250x150")
-        fen_enigme3.title("Jeu des allumettes")
-        fen_enigme3.wm_state(newstate="zoomed")
+            fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
+            return fichier
+
+        def nombre_de_chances():
+
+            global fenetre_enigme3, lab, nombre_allumettes, perdu, bravo
+
+            i=3 #nombre de chance
+            while i>0:
+                while nombre_allumettes>0:
+
+                    bouton1 = Button(fenetre_enigme3,command=prendre_1_allumette)
+                    bouton1.configure(text="1",font=(50))
+                    bouton1.place(x=1/3*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+                    bouton2 = Button(fenetre_enigme3,command=prendre_2_allumettes)
+                    bouton2.configure(text="2",font=(50))
+                    bouton2.place(x=7/15*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+                    bouton3 = Button(fenetre_enigme3,command=prendre_3_allumettes)
+                    bouton3.configure(text="3",font=(50))
+                    bouton3.place(x=3/5*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+
+
+                    if nombre_allumettes==0:
+                        i-=1
+                        texte2=Label(fenetre_enigme3, text="Vous avez perdu :( , il vous reste " + str(i) + "chances")
+                        texte2.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                        lab.configure(image=perdu)
+
+                    else:
+                        texte2=Label(fenetre_enigme3, text="Il reste " + str( nombre_allumettes)  + " allumettes!")
+                        texte2.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+
+                        if nombre_allumettes%4==3:
+                            p=2
+                        elif nombre_allumettes%4==2:
+                            p=1
+                        elif nombre_allumettes%4==0:
+                            p=3
+                        else:
+                            p=1
+
+                        texte3=Label(fenetre_enigme3,text="J'en prends " + str(p))   #ce que l'ordi prend
+                        texte3.place(x=5/12*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                        nombre_allumettes-=p
+                        al= PhotoImage(file = afficher_allumettes(nombre_allumettes))  #si on ne passe pas par une variable pour l'image ca ne marche pas
+                        lab.configure(image= al)
+                        texte2.destroy()
+                        texte2=Label(fenetre_enigme3, text="Il reste " + str(nombre_allumettes)  + " allumettes!")
+                        texte2.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+
+
+                        if nombre_allumettes<=0:
+                            lab.configure(image=bravo)
+                            texte4=Label(fen_enigme3, text="J'ai perdu! Bravo "+ prénom()," tu as gagné.\n Voici le 2eme chiffre du code: 0100")
+                            texte4.place(x=11/15*largeur_fenetre_enigme3, y=2/9*hauteur_fenetre_enigme3)
+                            i=0
+
+                        else:
+                            al= PhotoImage(file = afficher_allumettes(nombre_allumettes))
+                            lab.configure(image= al)
+            if i==0:
+                bouton4.destroy()
+
+
+
+        def prendre_3_allumettes():
+            global nombre_allumettes,lab    # la variable utiliséé à l'intérieur de la fonction est la même que celle à l'extérieur
+            nombre_allumettes-=3
+            al= PhotoImage(file = afficher_allumettes(nombre_allumettes))
+            lab.configure(image= al)
+
+
+
+        def prendre_2_allumettes():
+            global nombre_allumettes,lab
+            nombre_allumettes-=2
+            al= PhotoImage(file = afficher_allumettes(nombre_allumettes))
+            lab.configure(image= al)
+
+
+        def prendre_1_allumette():
+            global nombre_allumettes,lab
+            nombre_allumettes-=1
+            al= PhotoImage(file = afficher_allumettes(nombre_allumettes))
+            lab.configure(image = al)
+
+
+        def reinit():
+            global lab, nombre_allumettes
+            nombre_allumettes=10
+            lab.configure(image=allumettes)
+
+        #variable
+        nombre_allumettes=10
+
+        # fenetre graphique
+        fenetre_enigme3=Toplevel(fen_accueil)
+        fenetre_enigme3.title("Jeux des allumettes")
+        fenetre_enigme3.wm_state(newstate="zoomed")
+        largeur_fenetre_enigme3 = fenetre_enigme3.winfo_screenwidth()
+        hauteur_fenetre_enigme3 = fenetre_enigme3.winfo_screenheight()
+
+        #images
+        allumettes = PhotoImage(file ='../Images/allumettes/10 allumettes.gif')
+        bravo=PhotoImage(file ='../Images/bravo.gif')
+        perdu=PhotoImage(file ='../Images/perdu2.gif')
+
+        # Label
+        texte=Label(fenetre_enigme3, text="Jeux des allumettes :", font=("Helvetica", 40))
+        texte.place(x=1/3*largeur_fenetre_enigme3,y=1/18*hauteur_fenetre_enigme3)
+
+        texte1 = Label(fenetre_enigme3, text="Cliquez sur le nombre d'allumettes que vous prenez:",font=("Helvetica", 18))
+        texte1.place(x=3/10*largeur_fenetre_enigme3,y=1/6*hauteur_fenetre_enigme3)
+
+        texte5=Label(fenetre_enigme3, text="Les règles du jeu:\n -Il y a 10 allumettes \n -Chacun leur tour le joueur et l'ordi choissisent de prendre 1, 2 ou 3 allumettes\n -Celui qui prend la dernière allumette perd .",font=("Helvetica", 10))
+        texte5.place(x=7/10*largeur_fenetre_enigme3, y=1/12*hauteur_fenetre_enigme3)
+
+        lab = Label(fenetre_enigme3, image=allumettes)
+        lab.place(x=1/5*largeur_fenetre_enigme3,y=1/3*hauteur_fenetre_enigme3)
+
+
+        # boutons
+        bouton1 = Button(fenetre_enigme3,command=prendre_1_allumette)
+        bouton1.configure(text="1",font=(50))
+        bouton1.place(x=1/3*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+        bouton2 = Button(fenetre_enigme3,command=prendre_2_allumettes)
+        bouton2.configure(text="2",font=(50))
+        bouton2.place(x=7/15*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+        bouton3 = Button(fenetre_enigme3,command=prendre_3_allumettes)
+        bouton3.configure(text="3",font=(50))
+        bouton3.place(x=3/5*largeur_fenetre_enigme3,y=2/9*hauteur_fenetre_enigme3)
+
+        bouton4 = Button(fenetre_enigme3,text='Recommencer',command=reinit)
+        bouton4.place(x=4/15*largeur_fenetre_enigme3,y=7/9*hauteur_fenetre_enigme3)
+
+        bouton5 = Button(fenetre_enigme3,text='Quitter',command=fenetre_enigme3.destroy)
+        bouton5.place(x=2/3*largeur_fenetre_enigme3,y=7/9*hauteur_fenetre_enigme3)
+
 
 
     liste_jeux = [ jeu_1 , jeu_2 ,  jeu_3 ]
