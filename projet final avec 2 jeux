@@ -305,7 +305,7 @@ def nouvelle(zone_cliquée):
         papier = PhotoImage(file ='../Images/chi fou mi/papier.gif')
         ciseaux = PhotoImage(file ='../Images/chi fou mi/ciseaux.gif')
         bravo=PhotoImage(file ='../Images/bravo.gif')
-        perdu=PhotoImage(file ='../Images/perdu2.gif')
+        perdu=PhotoImage(file ='../Images/Triste.gif')
 
         # Label
         texte=Label(fen_enigme2, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
@@ -458,7 +458,7 @@ def nouvelle(zone_cliquée):
         #images
         allumettes = PhotoImage(file ='../Images/allumettes/10 allumettes.gif')
         bravo=PhotoImage(file ='../Images/bravo.gif')
-        perdu=PhotoImage(file ='../Images/perdu2.gif')
+        perdu=PhotoImage(file ='../Images/Triste.gif')
 
         # Label
         texte=Label(fenetre_enigme3, text="Jeux des allumettes :", font=("Helvetica", 40))
