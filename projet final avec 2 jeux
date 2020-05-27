@@ -145,6 +145,8 @@ def nouvelle(zone_cliquée):
                 lab3.pack()
                 lab4=Label(fen_enigme1, text="Voici le 3ème chiffre du code: 0000 ")
                 lab4.pack()
+                lab5 = Label(fen_enigme1, image=bravo)
+                lab5.place(x=11/15*largeur_fen_enigme1,y=2/5*hauteur_fen_enigme1)
             else:
 
                 global i          #pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
@@ -157,11 +159,16 @@ def nouvelle(zone_cliquée):
         fen_enigme1=Toplevel(fen_accueil)
         fen_enigme1.title("Enigme 1")
         fen_enigme1.wm_state(newstate="zoomed")
+        largeur_fen_enigme1 = fen_enigme1.winfo_screenwidth()
+        hauteur_fen_enigme1 = fen_enigme1.winfo_screenheight()
 
 
         #Variables globales
         global i
         i=5
+
+        #image
+        bravo=PhotoImage(file ='../Images/bravo.gif')
 
         #Label
         texte1=Label(fen_enigme1, text="Bienvenue " + prénom() + " ! \n Vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
