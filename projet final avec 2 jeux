@@ -16,16 +16,16 @@ def démarrage():
     etiquette.pack()
 
     etiquette2=Label(fen_accueil, text="Quel est ton nom?",font=("Arial",24), fg='black')
-    etiquette2.place(x=9/20*largeur_fen_accueil, y=1/3*hauteur_fen_accueil)
+    etiquette2.place(x=13/30*largeur_fen_accueil, y=1/3*hauteur_fen_accueil)
 
 
     global entree_nom
     entree_nom= Entry(fen_accueil)
-    entree_nom.place(x=49/100*largeur_fen_accueil, y=7/18*hauteur_fen_accueil)
+    entree_nom.place(x=7/15*largeur_fen_accueil, y=7/18*hauteur_fen_accueil)
 
     #Bouton
     bouton=Button(fen_accueil, text="Commencer le jeu", bg='white', fg='red', command=lambda:[début(), prénom()]) #lambda permet de combiner des fonctions pour faire une seule commande, car un bouton ne prend qu'une seule commande
-    bouton.place(x=1/2*largeur_fen_accueil, y=4/9*hauteur_fen_accueil)
+    bouton.place(x=71/150*largeur_fen_accueil, y=4/9*hauteur_fen_accueil)
 
 
 def prénom():
@@ -184,6 +184,7 @@ def nouvelle(zone_cliquée):
         fen_enigme1.mainloop()
 
     def jeu_2():
+        global ton_score, mon_score, score1, score2, texte3
         '''pierre papier ciseaux'''
 
         # ton_coup/joueur en ligne, mon_coup/ordi en colonne
@@ -246,9 +247,9 @@ def nouvelle(zone_cliquée):
                 texte3.destroy()
 
                 texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
-                texte3.place(x=1/3*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
+                texte3.place(x=11/30*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
                 lab4 = Label(fen_enigme2, image=bravo)
-                lab4.place(x=2/5*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
+                lab4.place(x=2/5*largeur_fen_enigme2,y=11/18*hauteur_fen_enigme2)
 
         def jouer_pierre():
 
@@ -355,7 +356,7 @@ def nouvelle(zone_cliquée):
 
     def jeu_3():
         ''' jeu des allumettes'''
-        
+        global nombre_allumettes, lab, fenetre_enigme3
         def afficher_allumettes(nball):
 
             fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
