@@ -55,11 +55,11 @@ def début():
     fond=PhotoImage(file='../Images/Pièce/fond.gif', width = largeur_fen_princ, height = hauteur_fen_princ)
 
 
-
     #canvas
     can=Canvas(fen_princ, width = largeur_fen_princ, height = hauteur_fen_princ)
     can.pack()
-    can.create_image(0, 0,  image=fond, anchor="nw")
+    can.create_image(0, 0,  image=fond, anchor="nw", )
+
 
     #variables globales
     global zone
@@ -151,7 +151,7 @@ def nouvelle(zone_cliquée):
             if entree.get()=="rien" or entree.get()=="Rien":
                 lab3=Label(fen_enigme1, text="Bravo " + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
                 lab3.pack()
-                lab4=Label(fen_enigme1, text="Voici le 3ème chiffre du code: 0000 ")
+                lab4=Label(fen_enigme1, text="Voici le 2ème chiffre du code: 0000 ")
                 lab4.pack()
                 lab5 = Label(fen_enigme1, image=bravo)
                 lab5.place(x=11/15*largeur_fen_enigme1,y=2/5*hauteur_fen_enigme1)
@@ -261,7 +261,7 @@ def nouvelle(zone_cliquée):
                 bouton4.destroy()
                 texte3.destroy()
 
-                texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0000",font=("Helvetica", 18))
+                texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0100",font=("Helvetica", 18))
                 texte3.place(x=11/30*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
                 lab4 = Label(fen_enigme2, image=bravo)
                 lab4.place(x=2/5*largeur_fen_enigme2,y=11/18*hauteur_fen_enigme2)
@@ -419,7 +419,7 @@ def nouvelle(zone_cliquée):
                     texte4.destroy()
                     lab.configure(image=bravo)
                     lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
-                    texte4=Label(fenetre_enigme3, text="J'ai perdu! Bravo "+prénom()+"! \n Voici le 2eme chiffre du code= 0100")
+                    texte4=Label(fenetre_enigme3, text="J'ai perdu! Bravo "+prénom()+"! \n Voici le 3eme chiffre du code= 0010")
                     texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
                     bouton4.destroy()
 
@@ -525,4 +525,5 @@ def nouvelle(zone_cliquée):
 
 fen_accueil=Tk()
 démarrage()
+
 fen_accueil.mainloop()
