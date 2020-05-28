@@ -371,7 +371,7 @@ def nouvelle(zone_cliquée):
 
     def jeu_3():
         ''' jeu des allumettes'''
-        global nombre_allumettes, lab, fenetre_enigme3,i,al, perdu, bravo
+        global nombre_allumettes, lab, fenetre_enigme3,i, al, perdu, bravo
         def afficher_allumettes(nball):
 
             fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
@@ -379,10 +379,13 @@ def nouvelle(zone_cliquée):
 
         def nombre_de_chances():
 
-            global fenetre_enigme3, lab, nombre_allumettes, perdu, bravo,i,al,texte2,texte3,texte6
+            global fenetre_enigme3, lab, nombre_allumettes, perdu, bravo,i,al,texte2,texte3, texte4,texte6
 
 
             if nombre_allumettes<=0:
+                texte2.destroy()
+                texte3.destroy()
+                texte4.destroy()
                 texte6=Label(fenetre_enigme3, text="Vous avez perdu :( , il vous reste " + str(i) + " chances")
                 texte6.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
                 lab.configure(image=perdu)
@@ -455,11 +458,13 @@ def nouvelle(zone_cliquée):
 
 
         def reinit():
-            global lab, nombre_allumettes,nombre_de_chances, bouton4, i, texte2, texte3,texte6
+            global lab, nombre_allumettes,nombre_de_chances, bouton4, i, texte2, texte3,texte4,texte6
             nombre_allumettes=10
             lab.configure(image=allumettes)
+            lab.place(x=1/5*largeur_fenetre_enigme3,y=1/3*hauteur_fenetre_enigme3)
             texte2.destroy()
             texte3.destroy()
+            texte4.destroy()
             texte6.destroy()
             i-=1
             if i==0:
