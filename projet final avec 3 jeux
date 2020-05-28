@@ -386,7 +386,7 @@ def nouvelle(zone_cliquée):
                 texte2.destroy()
                 texte3.destroy()
                 texte4.destroy()
-                texte6=Label(fenetre_enigme3, text="Vous avez perdu :( , il vous reste " + str(i) + " chances")
+                texte6=Label(fenetre_enigme3, text="Vous avez perdu :( , il vous reste " + str(i-1) + " chances")
                 texte6.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
                 lab.configure(image=perdu)
                 lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
@@ -414,15 +414,14 @@ def nouvelle(zone_cliquée):
                     texte4=Label(fenetre_enigme3, text="Il reste " + str(nombre_allumettes)  + " allumettes!")
                     texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
                 else:
+                    texte2.destroy()
+                    texte3.destroy()
+                    texte4.destroy()
                     lab.configure(image=bravo)
-                    texte4=Label(fenetre_enigme3, text="J'ai perdu! Bravo")
+                    lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
+                    texte4=Label(fenetre_enigme3, text="J'ai perdu! Bravo "+prénom()+"! \n Voici le 2eme chiffre du code= 0100")
                     texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
-                    i=0
-
-
-
-            if i==0:
-                bouton4.destroy()
+                    bouton4.destroy()
 
 
 
@@ -463,7 +462,7 @@ def nouvelle(zone_cliquée):
             texte4.destroy()
             texte6.destroy()
             i-=1
-            if i==0:
+            if (i-1)==0:
                 bouton4.destroy()
 
         #variable
