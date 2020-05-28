@@ -1,6 +1,19 @@
 from tkinter import *
 
+def indice(x):
+    if x==3:
+        message="\nVoici un indice: les chiffres dont vous disposez sont en binaire "
+    elif x==2:
+            message="\nVoici un indice: "
+    elif x==1:
+            message="\nVoici un indice: "
+
+    elif x==0:
+            message="\n La bonne réponse était '0402'. \n Vous avez perdu le jeu"
+    return message
+
 def verificationmdp():
+
 
     if entree_mdp.get()=="0402":
         lab2=Label(fen_mdp, text="Bravo ! Tu es libre ! Tu as fini le jeu!",font=("arial", 15))
@@ -12,10 +25,14 @@ def verificationmdp():
 
     else:
 
-        global i          #pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
-        lab4=Label(fen_enigme1, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. " + indice(i-1), font=("arial", 15))
+        global i, lab4
+        lab4.destroy()         #pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
+        lab4=Label(fen_mdp, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. " + indice(i-1), font=("arial", 15))
         lab4.place(x=17/30*largeur_fen_mdp,y=1/3*hauteur_fen_mdp)
         i=i-1
+
+
+
 
 #fenetre
 fen_mdp=Tk()
@@ -24,6 +41,9 @@ fen_mdp.wm_state(newstate="zoomed")
 largeur_fen_mdp = fen_mdp.winfo_screenwidth()
 hauteur_fen_mdp = fen_mdp.winfo_screenheight()
 
+#Variables globales
+global i
+i=4
 
 #images
 cadenas_ouvert = PhotoImage(file ='../Images/mot de passe/cadenas_ouvert.gif')
@@ -44,7 +64,7 @@ texte2.place(x=4/5*largeur_fen_mdp, y=1/12*hauteur_fen_mdp)
 lab = Label(fen_mdp, image=cadenas_fermé)
 lab.place(x=13/30*largeur_fen_mdp,y=5/18*hauteur_fen_mdp)
 
-
+lab4=Label(fen_mdp)
 #Entry
 entree_mdp= Entry(fen_mdp, font=20, text="Entrez le mot de passe")
 entree_mdp.place(x=13/30*largeur_fen_mdp,y=5/9*hauteur_fen_mdp)
