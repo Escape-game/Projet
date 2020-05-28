@@ -54,11 +54,8 @@ bouton1 = Button(fen_mdp)
 bouton1.configure(text="Validez la réponse",font=(50), command = verificationmdp)
 bouton1.place(x=13/30*largeur_fen_mdp,y=2/3*hauteur_fen_mdp)
 
-bouton2 = Button(fen_mdp,text='Recommencer')
-bouton2.place(x=4/15*largeur_fen_mdp,y=7/9*hauteur_fen_mdp)
-
-bouton3 = Button(fen_mdp,text='Quitter',command=fen_mdp.destroy)
-bouton3.place(x=2/3*largeur_fen_mdp,y=7/9*hauteur_fen_mdp)
+bouton2 = Button(fen_mdp,text='Quitter',command=fen_mdp.destroy)
+bouton2.place(x=2/3*largeur_fen_mdp,y=7/9*hauteur_fen_mdp)
 
 
 # demarrage :
