@@ -15,6 +15,9 @@ def démarrage():
     etiquette=Label(fen_accueil, text="Escape Game", font=("Times",52), fg='black')
     etiquette.pack()
 
+    texte=Label(fen_accueil, text="Dès que le chrono sera enclenché, tu auras 10 minutes pour sortir de la pièce, fais preuve d'ingéniosité!", font=("times", 20), fg='black')
+    texte.pack()
+
     etiquette2=Label(fen_accueil, text="Quel est ton nom?",font=("Arial",24), fg='black')
     etiquette2.place(x=13/30*largeur_fen_accueil, y=1/3*hauteur_fen_accueil)
 
