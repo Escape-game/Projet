@@ -149,6 +149,7 @@ def code():
             message="\n La bonne réponse était '402'. \n Vous avez perdu le jeu"
             lab6=Label(fen_mdp, image=perdu)
             lab6.place(x=2/3*largeur_fen_mdp, y=5/18*hauteur_fen_mdp)
+            bouton1.destroy()
         return message
 
     def verificationmdp():
