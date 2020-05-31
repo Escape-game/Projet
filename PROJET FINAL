@@ -19,23 +19,17 @@ def démarrage():
     can.pack()
     can.create_image(0, 0,  image=fond, anchor="nw")
     can.create_text(1/2*largeur_fen_accueil,1/4*hauteur_fen_accueil, text="Dès que le chrono sera enclenché, tu auras 10 minutes pour sortir de la pièce, fais preuve d'ingéniosité!",font=("times", 20), fill='white')
-
-    #Label
-    etiquette=Label(fen_accueil, text="Escape Game", font=("Times",52), fg='black')
-    etiquette.place(x=2/5*largeur_fen_accueil, y=1/20*hauteur_fen_accueil)
-
-
-    etiquette2=Label(fen_accueil, text="Quel est ton nom?",font=("Arial",18), fg='black')
-    etiquette2.place(x=14/30*largeur_fen_accueil, y=1/3*hauteur_fen_accueil)
+    can.create_text(1/2*largeur_fen_accueil,1/10*hauteur_fen_accueil, text="Escape Game",font=("times", 60), fill='white')
+    can.create_text(1/2*largeur_fen_accueil,1/3*hauteur_fen_accueil, text="Quel est ton nom?",font=("times", 20), fill='white')
 
 
     global entree_nom
     entree_nom= Entry(fen_accueil)
-    entree_nom.place(x=29/60*largeur_fen_accueil, y=7/18*hauteur_fen_accueil)
+    entree_nom.place(x=7/15*largeur_fen_accueil, y=7/18*hauteur_fen_accueil)
 
     #Bouton
     bouton=Button(fen_accueil, text="Commencer le jeu", bg='white', fg='red',font=("Arial",16),  command=lambda:[début(), prénom()]) #lambda permet de combiner des fonctions pour faire une seule commande, car un bouton ne prend qu'une seule commande
-    bouton.place(x=14/30*largeur_fen_accueil, y=4/9*hauteur_fen_accueil)
+    bouton.place(x=9/20*largeur_fen_accueil, y=4/9*hauteur_fen_accueil)
 
 
 def prénom():
@@ -194,6 +188,13 @@ def code():
     perdu=PhotoImage(file ='../Images/Triste.gif')
     bravo=PhotoImage(file ='../Images/bravo.gif')
 
+    fond=PhotoImage(file='../Images/Pièce/sortie.gif', width = largeur_fen_mdp, height = hauteur_fen_mdp)
+
+    #canvas
+    can=Canvas(fen_mdp, width = largeur_fen_mdp, height = hauteur_fen_mdp)
+    can.pack()
+    can.create_image(0, 0,  image=fond, anchor="nw")
+
     # Label
     texte=Label(fen_mdp, text="Entrez le mot de passe à 3 chiffres :", font=("Helvetica", 40))
     texte.place(x=1/4*largeur_fen_mdp,y=1/18*hauteur_fen_mdp)
@@ -263,22 +264,22 @@ def nouvelle(zone_cliquée):
                     message="Voici un indice: C'est un antonyme de 'tout'"
             elif x==0:
                     message="\n Vous avez perdu " + prénom() + "! \n La bonne réponse était 'rien'. \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches ont besoin de rien."
+                    lab4 = Label(fen_enigme1, image=perdu)
+                    lab4.place(x=11/15*largeur_fen_enigme1,y=2/9*hauteur_fen_enigme1)
             return message
 
         def verification():
 
             if entree.get()=="rien" or entree.get()=="Rien":
-                lab3=Label(fen_enigme1, text="Bravo " + prénom() + "!! \n en effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien")
-                lab3.pack()
-                lab4=Label(fen_enigme1, text="Voici le 2ème chiffre du code: 0000 ")
-                lab4.pack()
-                lab5 = Label(fen_enigme1, image=bravo)
-                lab5.place(x=11/15*largeur_fen_enigme1,y=2/5*hauteur_fen_enigme1)
+                lab4.configure( text="Bravo " + prénom() + "!! \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien \n Voici le 2ème chiffre du code: 0000")
+                lab4.place(x=1/5*largeur_fen_enigme1,y=5/9*hauteur_fen_enigme1)
+                lab3 = Label(fen_enigme1, image=bravo)
+                lab3.place(x=11/15*largeur_fen_enigme1,y=2/9*hauteur_fen_enigme1)
             else:
 
-                global i          #pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
-                lab5=Label(fen_enigme1, text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. " + indice(i-1), font=("arial", 15))
-                lab5.pack()
+                global i, lab5#pour que la valeur de i diminue de 1 à chaque fois et ne reviennent pas à 5
+                lab4.configure( text="Non ce n'est pas ça, il vous reste " + str(i-1) + " chances. " + indice(i-1), font=("arial", 15))
+                lab4.place(x=1/5*largeur_fen_enigme1,y=5/9*hauteur_fen_enigme1)
                 i=i-1
 
         #fenêtre
@@ -296,23 +297,30 @@ def nouvelle(zone_cliquée):
 
         #image
         bravo=PhotoImage(file ='../Images/bravo.gif')
+        perdu=PhotoImage(file ='../Images/triste.gif')
+        fond=PhotoImage(file='../Images/Pièce/etagère.gif', width = largeur_fen_enigme1, height = hauteur_fen_enigme1)
+
+        #canvas
+        can=Canvas(fen_enigme1, width = largeur_fen_enigme1, height = hauteur_fen_enigme1)
+        can.pack()
+        can.create_image(0, 0,  image=fond, anchor="nw")
+        can.create_text(1/2*largeur_fen_enigme1,1/10*hauteur_fen_enigme1, text="Bienvenue " + prénom() + " ! \n Si vous voulez gagner un indice il vous faudra répondre à cette égnime: \n C'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font=("times", 30), fill='white')
+        can.create_text(1/2*largeur_fen_enigme1,1/4*hauteur_fen_enigme1, text="Quelle est la réponse?", font=("times",25), fill='white')
 
         #Label
-        texte1=Label(fen_enigme1, text="Bienvenue " + prénom() + " ! \n Vous voulez gagner un indice il vous faudra répondre à cette égnime: \n c'est mieux que Dieu, pire que le diable, les pauvres l'ont, les riches en ont besoin...", font= ("Arial",30))
-        texte1.pack(pady=100)
-        texte2=Label(fen_enigme1, text="Quelle est la réponse?", font=("Arial",25))
-        texte2.pack(pady=10)
+        global lab4
+        lab4=Label(fen_enigme1)
 
         #Entry
         entree= Entry(fen_enigme1, font=20)
-        entree.pack(pady=10)
+        entree.place(x=2/5*largeur_fen_enigme1,y=1/3*hauteur_fen_enigme1)
 
 
         #Bouton
         bouton = Button(fen_enigme1, text="validez votre réponse", font= ("arial", 20), command = verification)
-        bouton.pack(pady=10)
+        bouton.place(x=2/5*largeur_fen_enigme1,y=4/9*hauteur_fen_enigme1)
         bouton_quitter=Button(fen_enigme1, text="Quitter", font= ("arial", 20), command = fen_enigme1.destroy)
-        bouton_quitter.pack(pady=10)
+        bouton_quitter.place(x=4/5*largeur_fen_enigme1,y=7/9*hauteur_fen_enigme1)
 
         #démarrage
         fen_enigme1.mainloop()
@@ -365,7 +373,6 @@ def nouvelle(zone_cliquée):
                 bouton2.destroy()
                 bouton3.destroy()
                 bouton4.destroy()
-                texte3.destroy()
 
                 texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as perdu "+prénom()+" !",font=("Helvetica", 18))
                 texte3.place(x=2/5*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
@@ -378,7 +385,6 @@ def nouvelle(zone_cliquée):
                 bouton2.destroy()
                 bouton3.destroy()
                 bouton4.destroy()
-                texte3.destroy()
 
                 texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as gagné " + prénom() + "! \n Voici le 1er chiffre du code: 0100",font=("Helvetica", 18))
                 texte3.place(x=11/30*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
@@ -433,22 +439,19 @@ def nouvelle(zone_cliquée):
         ciseaux = PhotoImage(file ='../Images/chi fou mi/ciseaux.gif')
         bravo=PhotoImage(file ='../Images/bravo.gif')
         perdu=PhotoImage(file ='../Images/Triste.gif')
+        fond=PhotoImage(file='../Images/Pièce/tableau.gif', width = largeur_fen_enigme2, height = hauteur_fen_enigme2)
+
+        #canvas
+        can=Canvas(fen_enigme2, width = largeur_fen_enigme2, height = hauteur_fen_enigme2)
+        can.pack()
+        can.create_image(0, 0,  image=fond, anchor="nw")
+        can.create_text(1/2*largeur_fen_enigme2,1/20*hauteur_fen_enigme2, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40), fill='white')
+        can.create_text(11/30*largeur_fen_enigme2,1/6*hauteur_fen_enigme2, text=prénom()+":", font=("Helvetica", 20), fill='white')
+        can.create_text(37/60*largeur_fen_enigme2,1/6*hauteur_fen_enigme2, text="Ordi :", font=("Helvetica", 20), fill='white')
+        can.create_text(1/2*largeur_fen_enigme2,29/60*hauteur_fen_enigme2, text="Bienvenue " + prénom() + "! Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18), fill='white')
+        can.create_text(13/15*largeur_fen_enigme2,1/9*hauteur_fen_enigme2, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12), fill='white')
 
         # Label
-        texte=Label(fen_enigme2, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
-        texte.place(x=1/3*largeur_fen_enigme2,y=1/20*hauteur_fen_enigme2)
-
-        texte1 = Label(fen_enigme2, text=prénom(), font=("Helvetica", 20))
-        texte1.place(x=7/20*largeur_fen_enigme2,y=1/6*hauteur_fen_enigme2)
-
-        texte2 = Label(fen_enigme2, text="Ordi :", font=("Helvetica", 20))
-        texte2.place(x=3/5*largeur_fen_enigme2,y=1/6*hauteur_fen_enigme2)
-
-        texte3 = Label(fen_enigme2, text="Bienvenue " + prénom() + "! \n Pour jouer, cliquez sur une des icones ci-dessous.",font=("Helvetica", 18))
-        texte3.place(x=1/3*largeur_fen_enigme2,y=17/36*hauteur_fen_enigme2)
-
-        texte4=Label(fen_enigme2, text="Les règles du jeu:\n -Le premier qui a 5 points gagne\n -La pierre gagne le ciseaux et perd contre la feuille \n -La feuille gagne la pierre et perd contre le ciseaux \n -Le ciseaux gagne contre la feuille et perd contre la pierre .",font=("Helvetica", 12))
-        texte4.place(x=11/15*largeur_fen_enigme2, y=1/9*hauteur_fen_enigme2)
 
         score1 = Label(fen_enigme2, text="0", font=("Helvetica", 20))
         score1.place(x=11/30*largeur_fen_enigme2,y=2/9*hauteur_fen_enigme2)
@@ -458,7 +461,6 @@ def nouvelle(zone_cliquée):
 
         lab1 = Label(fen_enigme2, image=rien)
         lab1.place(x=1/3*largeur_fen_enigme2,y=1/3*hauteur_fen_enigme2)
-
 
         lab2 = Label(fen_enigme2, image=versus)
         lab2.place(x=7/15*largeur_fen_enigme2,y=1/3*hauteur_fen_enigme2)
@@ -604,6 +606,12 @@ def nouvelle(zone_cliquée):
         allumettes = PhotoImage(file ='../Images/allumettes/10 allumettes.gif')
         bravo=PhotoImage(file ='../Images/bravo.gif')
         perdu=PhotoImage(file ='../Images/Triste.gif')
+        fond=PhotoImage(file='../Images/Pièce/ordi.gif', width = largeur_fenetre_enigme3, height = hauteur_fenetre_enigme3)
+
+        #canvas
+        can=Canvas(fenetre_enigme3, width = largeur_fenetre_enigme3, height = hauteur_fenetre_enigme3)
+        can.pack()
+        can.create_image(0, 0,  image=fond, anchor="nw")
 
         # Label
         texte=Label(fenetre_enigme3, text="Jeux des allumettes :", font=("Helvetica", 40))
