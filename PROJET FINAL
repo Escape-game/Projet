@@ -48,6 +48,7 @@ def prénom():
 def début():
     '''Fenêtre principale du jeu: pièce de l'escape game.'''
 
+
     #fenêtre principale
     global fen_princ
     fen_princ=Toplevel(fen_accueil)
@@ -75,16 +76,15 @@ def début():
 
     #variables globales
     global zone
-    zone=[[0 , 0 , largeur_fen_princ/2 , 0 , hauteur_fen_princ  ], [1, largeur_fen_princ/2 , largeur_fen_princ , 0 , hauteur_fen_princ/2], [ 2 , largeur_fen_princ/2 , largeur_fen_princ , hauteur_fen_princ/2 , hauteur_fen_princ ]]
+    zone=[[0 , 0 , largeur_fen_princ/2 , 0 , hauteur_fen_princ  ], [1, largeur_fen_princ/2 , largeur_fen_princ , 0 , hauteur_fen_princ/2], [ 2 , largeur_fen_princ/2 , largeur_fen_princ , hauteur_fen_princ/2 , hauteur_fen_princ]]
 
     fen_princ.bind('<Button-1>', recherche_zone)
 
 
     #boutons
-
-    bouton1 = Button(fen_princ, command=code)
-    bouton1.configure(text="Sortir de la pièce")
-    bouton1.place(x=9/10*largeur_fen_princ,y=9/10*hauteur_fen_princ)
+    global code
+    boutonSortirPiece = Button(fen_princ, text="Sortir de la piece", command=code)
+    boutonSortirPiece.place(x=9/10*largeur_fen_princ,y=9/10*hauteur_fen_princ)
 
 
 
@@ -132,6 +132,7 @@ def fin_jeu():
 
 def code():
 
+    global lab4
     def indice(x):
 
         if x==3:
@@ -146,7 +147,7 @@ def code():
             lab5.place(x=1/20*largeur_fen_mdp,y=1/2*hauteur_fen_mdp)
 
         elif x==0:
-            message="\n La bonne réponse était '402'. \n Vous avez perdu le jeu"
+            message="\n La bonne réponse était '402'. \n Vous avez perdu le jeu "+prénom()
             lab6=Label(fen_mdp, image=perdu)
             lab6.place(x=2/3*largeur_fen_mdp, y=5/18*hauteur_fen_mdp)
             bouton1.destroy()
@@ -155,12 +156,14 @@ def code():
     def verificationmdp():
 
 
+
         if entree_mdp.get()=="402":
-            lab2=Label(fen_mdp, text="Bravo ! Tu es libre ! Tu as fini le jeu!",font=("arial", 15))
+            lab2=Label(fen_mdp, text="Bravo ! Tu es libre "+prénom()+"! Tu as fini le jeu!",font=("arial", 15))
             lab2.place(x=17/30*largeur_fen_mdp,y=1/3*hauteur_fen_mdp)
             lab.configure(image=cadenas_ouvert)
             lab3=Label(fen_mdp, image=bravo)
             lab3.place(x=4/5*largeur_fen_mdp, y=5/18*hauteur_fen_mdp)
+            bouton1.destroy()
 
 
         else:
@@ -224,18 +227,24 @@ def code():
 def recherche_zone (evenement):
     '''Détecte dans quelle zone se trouve le clic'''
 
-    global coordonée_x , coordonnée_y
+    # focus le widget fenetre
+    global coordonée_x , coordonnée_y, fen_princ
+    fen_princ.focus_set()
+
     coordonée_x, coordonée_y = evenement.x, evenement.y
     i=0
 
-    while i <len(zone):
+    if evenement.widget.winfo_class()== "Canvas":                                                    #Si button, on ignore et si canva on effectue
+        while i <len(zone):
 
-        if zone[i][1]<coordonée_x< zone[i][2] and zone[i][3]<coordonée_y<zone[i][4] :            #zone=[[0 , 0 ,  , 0 , 300  ],[ 1 , 500 , 1600 , 300 , 900 ]]
+            if zone[i][1]<coordonée_x< zone[i][2] and zone[i][3]<coordonée_y<zone[i][4] :            #zone=[[0 , 0 ,  , 0 , 300  ],[ 1 , 500 , 1600 , 300 , 900 ]]
 
-            global zone_cliquée
-            zone_cliquée=zone[i][0]
-            nouvelle(zone_cliquée)
-        i+=1
+                global zone_cliquée
+                zone_cliquée=zone[i][0]
+                nouvelle(zone_cliquée)
+            i+=1
+
+
 
 def nouvelle(zone_cliquée):
     '''lance un nouveau jeu à chaque clic dans une zone'''
@@ -358,7 +367,7 @@ def nouvelle(zone_cliquée):
                 bouton4.destroy()
                 texte3.destroy()
 
-                texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as perdu !",font=("Helvetica", 18))
+                texte3 = Label(fen_enigme2, text="Le jeu est fini, tu as perdu "+prénom()+" !",font=("Helvetica", 18))
                 texte3.place(x=2/5*largeur_fen_enigme2,y=1/2*hauteur_fen_enigme2)
                 lab4 = Label(fen_enigme2, image=perdu)
                 lab4.place(x=2/5*largeur_fen_enigme2,y=5/9*hauteur_fen_enigme2)
@@ -429,7 +438,7 @@ def nouvelle(zone_cliquée):
         texte=Label(fen_enigme2, text="Papier, cailloux, ciseaux :", font=("Helvetica", 40))
         texte.place(x=1/3*largeur_fen_enigme2,y=1/20*hauteur_fen_enigme2)
 
-        texte1 = Label(fen_enigme2, text="Moi :", font=("Helvetica", 20))
+        texte1 = Label(fen_enigme2, text=prénom(), font=("Helvetica", 20))
         texte1.place(x=7/20*largeur_fen_enigme2,y=1/6*hauteur_fen_enigme2)
 
         texte2 = Label(fen_enigme2, text="Ordi :", font=("Helvetica", 20))
@@ -482,6 +491,8 @@ def nouvelle(zone_cliquée):
     def jeu_3():
         ''' jeu des allumettes'''
         global nombre_allumettes, lab, fenetre_enigme3,i, al, perdu, bravo
+
+
         def afficher_allumettes(nball):
 
             fichier='../Images/allumettes/' + str(nball) + ' allumettes.gif'
@@ -493,18 +504,16 @@ def nouvelle(zone_cliquée):
 
 
             if nombre_allumettes<=0:
+
                 texte2.destroy()
                 texte3.destroy()
                 texte4.destroy()
-                texte6=Label(fenetre_enigme3, text="Vous avez perdu :( , il vous reste " + str(i-1) + " chances")
-                texte6.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                texte6.configure(text="Vous avez perdu "+prénom()+" :( , il vous reste " + str(i-1) + " chances")
                 lab.configure(image=perdu)
                 lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
 
             else:
-                texte2=Label(fenetre_enigme3, text="Il reste " + str( nombre_allumettes)  + " allumettes!")
-                texte2.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
-
+                texte2.configure(text="Il reste " + str( nombre_allumettes)  + " allumettes!")
                 if nombre_allumettes%4==3:
                     p=2
                 elif nombre_allumettes%4==2:
@@ -514,23 +523,17 @@ def nouvelle(zone_cliquée):
                 else:
                     p=1
 
-                texte3=Label(fenetre_enigme3,text="J'en prends " + str(p))   #ce que l'ordi prend
-                texte3.place(x=5/12*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                texte3['text']="J'en prends " + str(p)   #ce que l'ordi prend
                 nombre_allumettes-=p
 
                 if nombre_allumettes>0:
                     al= PhotoImage(file = afficher_allumettes(nombre_allumettes))  #si on ne passe pas par une variable pour l'image ca ne marche pas
                     lab.configure(image= al)
-                    texte4=Label(fenetre_enigme3, text="Il reste " + str(nombre_allumettes)  + " allumettes!")
-                    texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                    texte4['text']="Il reste " + str(nombre_allumettes)  + " allumettes!"
                 else:
-                    texte2.destroy()
-                    texte3.destroy()
-                    texte4.destroy()
                     lab.configure(image=bravo)
                     lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
-                    texte4=Label(fenetre_enigme3, text="J'ai perdu! Bravo "+prénom()+"! \n Voici le 3eme chiffre du code= 0010")
-                    texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+                    texte4['text']="J'ai perdu! Bravo "+prénom()+"! \n Voici le 3eme chiffre du code= 0010"
                     bouton4.destroy()
 
 
@@ -567,13 +570,23 @@ def nouvelle(zone_cliquée):
             nombre_allumettes=10
             lab.configure(image=allumettes)
             lab.place(x=1/5*largeur_fenetre_enigme3,y=1/3*hauteur_fenetre_enigme3)
-            texte2.destroy()
-            texte3.destroy()
-            texte4.destroy()
-            texte6.destroy()
+            texte2=Label(fenetre_enigme3)
+            texte3=Label(fenetre_enigme3)
+            texte4=Label(fenetre_enigme3)
+            texte2.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+            texte3.place(x=5/12*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+            texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+            texte6['text']=""
+            texte2['text']=""
+            texte3['text']=""
+            texte4['text']=""
             i-=1
-            if (i-1)==0:
+            if i==0:
                 bouton4.destroy()
+                text=Label(fenetre_enigme3, text='Vous avez perdu ce jeu '+prénom()+'!', font=("Times New Roman",50), fg='red')
+                text.place(x=1/4*largeur_fenetre_enigme3, y=1/2*hauteur_fenetre_enigme3)
+                lab.configure(image=perdu)
+                lab.place(x=1/3*largeur_fenetre_enigme3, y=1/3*hauteur_fenetre_enigme3)
 
         #variable
         nombre_allumettes=10
@@ -604,6 +617,15 @@ def nouvelle(zone_cliquée):
         lab = Label(fenetre_enigme3, image=allumettes)
         lab.place(x=1/5*largeur_fenetre_enigme3,y=1/3*hauteur_fenetre_enigme3)
 
+        global texte2,texte3,texte4,texte6,bouton4
+        texte6=Label(fenetre_enigme3)
+        texte2=Label(fenetre_enigme3)
+        texte3=Label(fenetre_enigme3)
+        texte4=Label(fenetre_enigme3)
+        texte6.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+        texte2.place(x=1/3*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+        texte3.place(x=5/12*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
+        texte4.place(x=29/60*largeur_fenetre_enigme3, y=5/18*hauteur_fenetre_enigme3)
 
         # boutons
         bouton1 = Button(fenetre_enigme3,command=lambda:[prendre_1_allumette(), nombre_de_chances()])
@@ -635,5 +657,4 @@ def nouvelle(zone_cliquée):
 
 fen_accueil=Tk()
 démarrage()
-
 fen_accueil.mainloop()
