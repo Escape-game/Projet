@@ -194,16 +194,12 @@ def code():
     can=Canvas(fen_mdp, width = largeur_fen_mdp, height = hauteur_fen_mdp)
     can.pack()
     can.create_image(0, 0,  image=fond, anchor="nw")
+    can.create_text(1/2*largeur_fen_mdp,1/18*hauteur_fen_mdp, text="Entrez le mot de passe à 3 chiffres :", font=("times", 40), fill='white')
+    can.create_text(1/2*largeur_fen_mdp,1/6*hauteur_fen_mdp, text="Dernière étape pour sortir de la salle!!!:", font=("times",20 ), fill='white')
+    can.create_text(13/15*largeur_fen_mdp,1/6*hauteur_fen_mdp, text="Règles: \nA l'aide des codes récupérés lors des mini-jeux \n Trouvez le mot de passe! \n Attention ce ne sont pas des chiffres classiques!", font=("times",16 ), fill='white')
+
 
     # Label
-    texte=Label(fen_mdp, text="Entrez le mot de passe à 3 chiffres :", font=("Helvetica", 40))
-    texte.place(x=1/4*largeur_fen_mdp,y=1/18*hauteur_fen_mdp)
-
-    texte1 = Label(fen_mdp, text="Dernière étape pour sortir de la salle!!!:",font=("Helvetica", 18))
-    texte1.place(x=11/30*largeur_fen_mdp,y=1/6*hauteur_fen_mdp)
-
-    texte2=Label(fen_mdp, text="Règles: \nA l'aide des codes récupérés lors des mini-jeux \n Trouvez le mot de passe! \n Attention ce ne sont pas des chiffres classiques!",font=("Helvetica", 10))
-    texte2.place(x=4/5*largeur_fen_mdp, y=1/12*hauteur_fen_mdp)
 
     lab = Label(fen_mdp, image=cadenas_fermé)
     lab.place(x=13/30*largeur_fen_mdp,y=5/18*hauteur_fen_mdp)
@@ -272,7 +268,7 @@ def nouvelle(zone_cliquée):
 
             if entree.get()=="rien" or entree.get()=="Rien":
                 lab4.configure( text="Bravo " + prénom() + "!! \n En effet rien n'est mieux que Dieu, rien n'est pire que le diable, les pauvres n'ont rien et les riches n'ont besoin de rien \n Voici le 2ème chiffre du code: 0000")
-                lab4.place(x=1/5*largeur_fen_enigme1,y=5/9*hauteur_fen_enigme1)
+                lab4.place(x=1/4*largeur_fen_enigme1,y=5/9*hauteur_fen_enigme1)
                 lab3 = Label(fen_enigme1, image=bravo)
                 lab3.place(x=11/15*largeur_fen_enigme1,y=2/9*hauteur_fen_enigme1)
             else:
