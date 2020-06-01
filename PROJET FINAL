@@ -55,15 +55,15 @@ def début():
     hauteur_fen_princ = fen_princ.winfo_screenheight()
 
     #image
-    global fond
+    global fond_bureau
 
-    fond=PhotoImage(file='../Images/Pièce/bureau.gif', width = largeur_fen_princ, height = hauteur_fen_princ)
+    fond_bureau=PhotoImage(file='../Images/Pièce/bureau.gif', width = largeur_fen_princ, height = hauteur_fen_princ)
 
 
     #canvas
     can=Canvas(fen_princ, width = largeur_fen_princ, height = hauteur_fen_princ)
     can.pack()
-    can.create_image(0, 0,  image=fond, anchor="nw")
+    can.create_image(0, 0,  image=fond_bureau, anchor="nw")
     can.create_text(1/2*largeur_fen_princ,1/10*hauteur_fen_princ, text="Cliquez sur les objets de la pièce pour récolter les informations nécessaires pour sortir!",font=("times", 20), fill='white')
 
 
@@ -599,12 +599,13 @@ def nouvelle(zone_cliquée):
         hauteur_fenetre_enigme3 = fenetre_enigme3.winfo_screenheight()
 
         #images
+        global fond
         allumettes = PhotoImage(file ='../Images/allumettes/10 allumettes.gif')
         bravo=PhotoImage(file ='../Images/bravo.gif')
         perdu=PhotoImage(file ='../Images/Triste.gif')
         fond=PhotoImage(file='../Images/Pièce/ordi.gif', width = largeur_fenetre_enigme3, height = hauteur_fenetre_enigme3)
 
-        global fond
+
         #canvas
         can=Canvas(fenetre_enigme3, width = largeur_fenetre_enigme3, height = hauteur_fenetre_enigme3)
         can.pack()
